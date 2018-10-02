@@ -11,9 +11,10 @@ Welcome to the Mağara codebase. Let's build something awesome for students.
 
 ## What is Mağara?
 
-Mağara is a platform where college and university students find a house with ease. Important difference between other housing application, universities can install their on-premises servers, so they will not pay money to stupid installation, upgrade or uninstall fees. So, you have two chance to use Mağara.
+Mağara is a platform where college and university students can find accommodation with ease. Mağara's key difference from other housing applications is the ability for tertiary institutions to install a local and customized instance on their servers. This saves institutions from paying exorbitant installation, maintenance and uninstall fees. 
 
-1. Use our self-hosted version
+There are two versions of Mağara:
+1. Our self-hosted version
 2. Download and install on your on-premises server
 
 ## Codebase
