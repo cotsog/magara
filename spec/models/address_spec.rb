@@ -36,19 +36,22 @@ RSpec.describe Address do
 
   context 'zip code' do
     it 'should be valid with these zip codes' do
-      %w[90001 90403 96054].each do |zcode|
+      %w[90000 96054 37112 99999 54221-4366 90210-7321].each do |zcode|
         address.zip_code = zcode
         expect(address).to be_valid
       end
     end
 
-    # BUG:
-    #   "90000" and "90655" returns validation error. Check out the RegEx
-    # it 'should not be valid with there zip codes'
-
     it 'should not be valid with letters' do
       address.zip_code = 'SaMo3'
       expect(address).to_not be_valid
+    end
+
+    it 'should not be valid with an improper seperator' do
+      ['12342 - 5462', '56331 -5672', '46621- 3677', '23456_1944'].each do |zcode|
+        address.zip_code = zcode
+        expect(address).to_not be_valid
+      end
     end
   end
 
