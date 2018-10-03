@@ -2,7 +2,7 @@
 
 ![Ruby version](https://img.shields.io/badge/Ruby-v2.5.1-green.svg)
 ![Rails version](https://img.shields.io/badge/Rails-v5.2.1-green.svg)
-[![Build status](https://travis-ci.com/BerkhanBerkdemir/magara.svg?branch=master)](https://travis-ci.com/BerkhanBerkdemir/magara)
+[![Build Status](https://semaphoreci.com/api/v1/magara/magara/branches/master/shields_badge.svg)](https://semaphoreci.com/magara/magara)
 ![AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 [![Open Source Helpers](https://www.codetriage.com/berkhanberkdemir/magara/badges/users.svg)](https://www.codetriage.com/berkhanberkdemir/magara)
@@ -11,7 +11,7 @@ Welcome to the Mağara codebase. Let's build something awesome for students.
 
 ## What is Mağara?
 
-Mağara is a platform where college and university students can find accommodation with ease. Mağara's key difference from other housing applications is the ability for tertiary institutions to install a local and customized instance on their servers. This saves institutions from paying exorbitant installation, maintenance and uninstall fees. 
+Mağara is a platform where college and university students can find accommodation with ease. Mağara's key difference from other housing applications is the ability for tertiary institutions to install a local and customized instance on their servers. This saves institutions from paying exorbitant installation, maintenance and uninstall fees.
 
 There are two versions of Mağara:
 1. Our self-hosted version
