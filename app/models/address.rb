@@ -8,7 +8,7 @@ class Address < ApplicationRecord
   # HACK: Only save upcase state abbr name
   validates :state,     presence: true, length: { is: 2 }
   # HACK: The RegEx validation is needed to be refactored
-  validates :zip_code,  presence: true, format: { with: /\A9[0-6]\d{3}\z/ }
+  validates :zip_code,  presence: true, format: { with: /\A[0-9]{5}(?:-[0-9]{4})?\z/ }
 
   private
 
