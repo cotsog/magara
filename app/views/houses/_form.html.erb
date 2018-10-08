@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag "trix" %>
+<%= javascript_include_tag "trix" %>
 <div class="col-12 col-lg-8 mx-auto">
   <%= form_with model: @house, local: true do |form| %>
     <div class="form-row">
@@ -27,6 +29,16 @@
         <div class="form-group">
           <%= form.label      :available_at %>
           <%= form.date_field :available_at, class: "form-control", value: Date.today, required: true %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-lg-12">
+        <div class="form-group">
+          <%= form.label  :description %>
+          <%= form.hidden_field :description %>
+          <trix-editor input="house_description"></trix-editor>
         </div>
       </div>
     </div>
