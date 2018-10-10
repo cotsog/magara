@@ -20,27 +20,30 @@ class HousesController < ApplicationController
     @house.user = current_user
 
     if @house.save
-      # TODO: Add success flash message
+      flash.now[:success] = 'The house was created successfully'
       redirect_to @house
     else
+      flash.now[:error] = @house.errors.full_messages.join("\n")
       render :new
     end
   end
 
   def update
     if @house.update house_params
-      # TODO: Add success flash message
+      flash.now[:success] = 'The house was updated successfully'
       redirect_to @house
     else
+      flash.now[:error] = @house.errors.full_messages.join("\n")
       render :edit
     end
   end
 
   def destroy
     if @house.destroy
-      flash.now[:success] = 'The house deleted successfully'
+      flash.now[:success] = 'The house was deleted successfully'
       redirect_to houses_path
     else
+      flash.now[:error] = @house.errors.full_messages.join("\n")
       redirect_to @house
     end
   end
