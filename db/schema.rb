@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 2018_08_27_001045) do
     t.integer "house_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "washer"
+    t.boolean "dryer"
   end
 
   create_table "houses", force: :cascade do |t|
