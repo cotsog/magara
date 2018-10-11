@@ -14,6 +14,7 @@
       <b>Rent</b>: $ <%= @house.rent.to_i %> <br>
       <b>Deposit</b>: $ <%= @house.deposit.to_i %> <br>
       <b>Preferred gender</b>: <%= int_to_gender(@house.preferred_gender) %>
+      <b>Built in</b>: <%= @house.built_in.strftime("%B %Y") %>
     </div>
 
     <div class="mt-3">

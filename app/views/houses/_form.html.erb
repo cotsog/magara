@@ -78,6 +78,22 @@
     </div>
     <% end %>
 
+    <div class="form-row">
+      <div class="col">
+        <div class="form-group">
+          <%= form.label      :built_in %> &mdash; <small>Day is optional</small>
+          <%= form.date_field :built_in, class: "form-control", max: Date.today, required: true %>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <%= form.label        :lease_length %> &mdash; <small>Month</small>
+          <%= form.number_field :lease_length, class: "form-control", min: 1, max: 18, required: true %>
+        </div>age
+      </div>
+    </div>
+
     <%= form.fields_for :checkbox do |checkbox|  %>
     <div class="form-row">
       <div class="col">
