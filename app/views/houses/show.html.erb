@@ -13,16 +13,23 @@
       <h2 class="text-center">Specification</h2>
       <b>Rent</b>: $ <%= @house.rent.to_i %> <br>
       <b>Deposit</b>: $ <%= @house.deposit.to_i %> <br>
-      <b>Preferred gender</b>: <%= int_to_gender(@house.preferred_gender) %>
+      <b>Preferred gender</b>: <%= int_to_gender(@house.preferred_gender) %> <br>
+      <b>Available at</b>: <%= @house.available_at.to_date.strftime("%B %d, %Y") %> <br>
       <b>Built in</b>: <%= @house.built_in.strftime("%B %Y") %>
     </div>
 
     <div class="mt-3">
       <h2 class="text-center">Address</h2>
       <address>
-        <%= @house.address.address_1 %>,<%= @house.address.address_2 %><br>
+        <%# HACK: ", #{@house.address.address_2}" if @house.address.address_2 %>
+        <%= @house.address.address_1 %><%= ", #{@house.address.address_2}" if @house.address.address_2 %> <br>
         <%= @house.address.city %> <%= @house.address.state %>, <%= @house.address.zip_code %>
       </address>
+    </div>
+
+    <div class="mt-3">
+      <h2 class="text-center">Description</h2>
+      <p><%= @house.description.html_safe %></p>
     </div>
   </div>
 
