@@ -63,6 +63,8 @@ class HousesController < ApplicationController
     params.require(:house).permit :rent, :deposit, :preferred_gender,
                                   :available_at,
                                   :description,
+                                  :built_in,
+                                  :lease_length,
                                   address_attributes: %i[address_1 address_2
                                                          city state
                                                          zip_code],

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_27_001045) do
+ActiveRecord::Schema.define(version: 2018_10_11_021042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 2018_08_27_001045) do
     t.integer "house_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "washer"
+    t.boolean "dryer"
   end
 
   create_table "houses", force: :cascade do |t|
@@ -51,6 +53,8 @@ ActiveRecord::Schema.define(version: 2018_08_27_001045) do
     t.datetime "updated_at", null: false
     t.date "available_at", null: false
     t.bigint "user_id"
+    t.integer "lease_length"
+    t.date "built_in"
     t.index ["user_id"], name: "index_houses_on_user_id"
   end
 
