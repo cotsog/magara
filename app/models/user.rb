@@ -3,6 +3,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable
 
-  has_many :houses
+  has_many :houses, dependent: :destroy
   validates_associated :houses
 end
