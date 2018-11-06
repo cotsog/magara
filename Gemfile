@@ -40,6 +40,7 @@ group :test do
   gem 'rubocop',   '~> 0.58.2', require: false
   gem 'rubocop-rspec'
   gem 'scss_lint', '~> 0.57.0', require: false
+  gem 'shoulda-matchers'
 end
 
 group :production do

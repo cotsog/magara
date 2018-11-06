@@ -5,4 +5,6 @@ RSpec.describe User do
     t = User.reflect_on_association(:houses)
     expect(t.macro).to eq(:has_many)
   end
+
+  it { should have_many(:houses).dependent(:destroy) }
 end
