@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe Address do
   subject(:address) { create(:address, house: build(:house)) }
 
+  it 'should belong to a house' do
+    should belong_to(:house)
+  end
+
   it 'is valid' do
     is_expected.to be_valid
   end

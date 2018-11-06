@@ -3,8 +3,21 @@ require 'rails_helper'
 RSpec.describe House do
   subject(:house) { create(:house, :either) }
 
+  it 'should belong to a user' do
+    assc = House.reflect_on_association(:user)
+    expect(assc.macro).to eq :belongs_to
+  end
+
   it 'is valid' do
     is_expected.to be_valid
+  end
+
+  it 'should have an associated address' do
+    should have_one(:address).dependent(:destroy)
+  end
+
+  it 'should have an associated checkbox' do
+    should have_one(:checkbox).dependent(:destroy)
   end
 
   context 'rent' do
@@ -18,7 +31,7 @@ RSpec.describe House do
       is_expected.not_to be_valid
     end
 
-    it 'can not be string'  do
+    it 'can not be string' do
       house.rent = 'three hundred'
       is_expected.to_not be_valid
     end
