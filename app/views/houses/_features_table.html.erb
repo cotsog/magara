@@ -1,0 +1,43 @@
+<table class="table">
+  <tr>
+    <th>Air conditioning</th>
+    <td><%= check_it(@house.checkbox.air_conditioning) %></td>
+
+    <th>Balcony</th>
+    <td><%= check_it(@house.checkbox.balcony) %></td>
+  </tr>
+  <tr>
+    <th>Utilities included</th>
+    <td><%= check_it(@house.checkbox.include_utility) %></td>
+
+    <th>Pets allowed</th>
+    <td><%= check_it(@house.checkbox.pets_allowed) %></td>
+  </tr>
+  <tr>
+    <th>Private bathroom</th>
+    <td><%= check_it(@house.checkbox.private_bathroom) %></td>
+
+    <th>Private bedroom</th>
+    <td><%= check_it(@house.checkbox.private_bedroom) %></td>
+  </tr>
+  <tr>
+    <th>Refrigerator</th>
+    <td><%= check_it(@house.checkbox.refrigerator) %></td>
+
+    <th>Near bus line</th>
+    <td><%= check_it(@house.checkbox.near_bus_line) %></td>
+  </tr>
+
+  <tr>
+    <th>Smoking allowed</th>
+    <td><%= check_it(@house.checkbox.smoke_allowed) %></td>
+
+    <th>Washer</th>
+    <td><%= check_it(@house.checkbox.washer) %></td>
+  </tr>
+
+  <tr>
+    <th>Dryer</th>
+    <td><%= check_it(@house.checkbox.dryer) %></td>
+  </tr>
+</table>

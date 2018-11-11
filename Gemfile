@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'coffee-rails', '~> 4.2'
 gem 'devise',       '~> 4.5.0'
+gem 'geocoder',     '~> 1.5'
 gem 'high_voltage', '~> 3.1.0'
 gem 'jbuilder',     '~> 2.5'
 gem 'passenger',    '5.3.5', require: 'phusion_passenger/rack_handler'
@@ -51,3 +52,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+gem "webpacker", "~> 3.5"
