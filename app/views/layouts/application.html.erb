@@ -21,6 +21,10 @@
 
         <div class="collapse navbar-collapse" id="masterNavbar">
           <ul class="navbar-nav ml-auto">
+            <%= form_tag houses_path, method: :get, class: 'form-inline' do %>
+              <%= text_field_tag :term, params[:term], class: 'form-control mr-sm-2' %>
+              <%= submit_tag 'Search', class: 'btn nav-item nav-link', name: nil %>
+            <% end %>
             <li class="nav-item">
               <%= link_to "Houses", houses_path, class: "nav-link" %>
             </li>
