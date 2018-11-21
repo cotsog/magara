@@ -6,6 +6,7 @@
 <div class="d-flex justify-content-start mb-3">
   <div><%= link_to "List Property", new_house_path, class: "btn btn-primary" %></div>
 </div>
+
 <div class="card-columns">
   <% @houses.each do |house| %>
   <a href="<%= house_path(house) %>" class="text-dark">

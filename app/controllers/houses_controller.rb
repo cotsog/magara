@@ -4,7 +4,7 @@ class HousesController < ApplicationController
   before_action :owner?, only: %i[edit update destroy]
 
   def index
-    @houses = House.search(params[:term])
+    @houses = House.all
   end
 
   def show; end
