@@ -2,11 +2,12 @@ source 'https://rubygems.org'
 
 gem 'coffee-rails', '~> 4.2'
 gem 'devise',       '~> 4.5.0'
+gem 'geocoder',     '~> 1.5'
 gem 'high_voltage', '~> 3.1.0'
 gem 'jbuilder',     '~> 2.5'
 gem 'passenger',    '5.3.5', require: 'phusion_passenger/rack_handler'
 gem 'pg',           '1.1.3'
-gem 'rails',        '5.2.1'
+gem 'rails',        '5.2.1.1'
 gem 'sass-rails',   '~> 5.0'
 gem 'uglifier',     '>= 1.3.0'
 gem 'turbolinks',   '~> 5.2'
@@ -41,13 +42,18 @@ group :test do
   gem 'rubocop-rspec'
   gem 'scss_lint', '~> 0.57.0', require: false
   gem 'shoulda-matchers'
+  gem 'simplecov', require: false
 end
 
 group :production do
   # Use Redis adapter to run Action Cable in production
   gem 'redis', '~> 4.0'
   gem 'sidekiq', '~> 5.2.1'
+
+  gem 'sentry-raven'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+gem "webpacker", "~> 3.5"

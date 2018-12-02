@@ -1,0 +1,36 @@
+{
+  "name": "Mağara",
+  "description": "Off-campus housing web application for universities and colleges.",
+  "scripts": {
+    "postdeploy": "bin/setup"
+  },
+  "env": {
+    "MAGARA_DOMAIN": {
+      "required": true
+    },
+    "SENTRY_DSN": {
+      "required": true
+    },
+    "RAILS_ENV": "production",
+    "RAILS_LOG_TO_STDOUT": "enabled",
+    "RAILS_SERVE_STATIC_FILES": "enabled"
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+    "heroku-postgresql",
+    "heroku-redis",
+    "sendgrid"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/ruby"
+    },
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

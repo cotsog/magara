@@ -8,7 +8,10 @@
     <%= csrf_meta_tags -%> <%= csp_meta_tag -%>
 
     <%= favicon_link_tag -%>
-    <%= stylesheet_link_tag "application" -%>
+    <%= stylesheet_link_tag    "application" -%>
+    <%= javascript_include_tag "application", data: { "turbolinks-eval": false } -%>
+
+    <%= yield :head %>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -82,6 +85,5 @@
     </footer>
 
     <% console if Rails.env.development? %>
-    <%= javascript_include_tag "application" -%>
   </body>
 </html>
