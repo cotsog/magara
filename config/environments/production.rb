@@ -49,7 +49,7 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -63,7 +63,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   config.active_job.queue_adapter     = :sidekiq
-  config.active_job.queue_name_prefix = "magara_production"
+  config.active_job.queue_name_prefix = 'magara_production'
 
   config.action_mailer.perform_caching = false
 
@@ -71,14 +71,19 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
-  config.action_mailer.default_url_options = { host: ENV['MAGARA_DOMAIN'] }
+  config.action_mailer.default_url_options = {
+    host: ENV['MAGARA_DOMAIN'],
+    protocol: 'https',
+    only_path: false
+  }
 
   config.action_mailer.smtp_settings = {
     user_name: ENV['SENDGRID_USERNAME'],
-    password:  ENV['SENDGRID_PASSWORD'],
-    domain:    ENV['MAGARA_DOMAIN'],
-    address:   'smtp.sendgrid.net',
-    port:      587,
+    password: ENV['SENDGRID_PASSWORD'],
+    domain: ENV['MAGARA_DOMAIN'],
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    only_path: false,
     authentication: :plain,
     enable_starttls_auto: true
   }
