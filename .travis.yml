@@ -1,0 +1,38 @@
+dist: trusty
+language: ruby
+rvm:
+- 2.5.1
+
+bundler_args: --without production
+cache:
+ directories:
+ - /home/travis/.rvm/
+ - vendor/bundle/
+ - node_modules/
+
+env:
+- RAILS_ENV=test
+
+jobs:
+  include:
+  - stage: code-analysis
+    script: bundle exec rubocop
+  - script: bundle exec scss-lint
+
+  - stage: test
+    addons:
+      postgresql: "9.6"
+    services:
+    - elasticsearch
+    before_script:
+    # User and database with previleges creation for PostgreSQL
+    - psql -c "CREATE DATABASE magara_test;" -U postgres
+    - psql -c "CREATE USER magara WITH PASSWORD 'magara';" -U postgres
+    - psql -c "GRANT ALL PRIVILEGES ON DATABASE magara_test TO magara;" -U postgres
+    - psql -c "ALTER USER magara WITH SUPERUSER;" -U postgres
+    # Setup assets and database
+    - bundle exec rails assets:precompile
+    - bundle exec rails db:setup
+    script: bundle exec rspec
+    after_script:
+    - bundle exec rails db:drop

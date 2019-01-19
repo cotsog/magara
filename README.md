@@ -2,7 +2,7 @@
 
 ![Ruby version](https://img.shields.io/badge/Ruby-v2.5.1-green.svg)
 ![Rails version](https://img.shields.io/badge/Rails-v5.2.1-green.svg)
-[![Build Status](https://semaphoreci.com/api/v1/magara/magara/branches/master/shields_badge.svg)](https://semaphoreci.com/magara/magara)
+[![Build Status](https://travis-ci.org/magara/magara.svg?branch=master)](https://travis-ci.org/magara/magara)
 [![AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 [![Open Source Helpers](https://www.codetriage.com/berkhanberkdemir/magara/badges/users.svg)](https://www.codetriage.com/berkhanberkdemir/magara)
