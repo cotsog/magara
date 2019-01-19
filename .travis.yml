@@ -16,9 +16,8 @@ env:
 jobs:
   include:
   - stage: code-analysis
-    allow_failures:
-    - script: bundle exec rubocop
-    - script: bundle exec scss-lint
+    script: bundle exec rubocop
+  - script: bundle exec scss-lint
 
   - stage: test
     addons:
