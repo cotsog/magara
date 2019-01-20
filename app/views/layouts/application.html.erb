@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title><%= "#{yield :title} | " if yield(:title).present? %>Magara</title>
-    <%= csrf_meta_tags -%> <%= csp_meta_tag -%>
+    <title><%= "#{yield :title} | " if yield(:title).present? %>Mağara</title>
+    <%= csrf_meta_tags -%>
+    <%= csp_meta_tag   -%>
 
-    <%= favicon_link_tag -%>
-    <%= stylesheet_link_tag    "application" -%>
-    <%= javascript_include_tag "application", data: { "turbolinks-eval": false } -%>
+    <%= stylesheet_pack_tag "stylesheets/application" %>
+    <%= javascript_pack_tag "application" %>
 
     <%= yield :head %>
   </head>
