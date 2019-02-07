@@ -1,9 +1,22 @@
+inherit_from: .rubocop_todo.yml
+
+require: rubocop-rspec
+
 AllCops:
+  TargetRubyVersion: 2.5
+  TargetRailsVersion: 5.2
+
   Exclude:
-  - 'bin/**/*'
-  - 'db/**/*'
-  - 'node_modules/**/*'
-  - 'vendor/**/*'
+  - bin/**/*
+  - db/**/*
+  - node_modules/**/*
+  - vendor/**/*
+
+Metrics/LineLength:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
 
 Rails:
   Enabled: true

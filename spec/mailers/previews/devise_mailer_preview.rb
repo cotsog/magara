@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Preview all emails at http://127.0.0.1:3000/rails/mailers/devise_mailer
 class DeviseMailerPreview < ActionMailer::Preview
   def confirmation_instructions

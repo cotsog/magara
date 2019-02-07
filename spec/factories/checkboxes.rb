@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :checkbox do
     air_conditioning { Faker::Boolean.boolean }

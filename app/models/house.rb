@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class House < ApplicationRecord
   require_dependency 'validators/at_future_validator.rb'
 

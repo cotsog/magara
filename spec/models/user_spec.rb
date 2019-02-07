@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User do
   it 'has many houses' do
-    t = User.reflect_on_association(:houses)
+    t = described_class.reflect_on_association(:houses)
     expect(t.macro).to eq(:has_many)
   end
 
-  it { should have_many(:houses).dependent(:destroy) }
+  it { is_expected.to have_many(:houses).dependent(:destroy) }
 end

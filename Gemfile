@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 gem 'coffee-rails', '~> 4.2'
@@ -9,8 +11,8 @@ gem 'passenger',    '5.3.5', require: 'phusion_passenger/rack_handler'
 gem 'pg',           '1.1.3'
 gem 'rails',        '5.2.1.1'
 gem 'sass-rails',   '~> 5.0'
-gem 'uglifier',     '>= 1.3.0'
 gem 'turbolinks',   '~> 5.2'
+gem 'uglifier',     '>= 1.3.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -27,12 +29,13 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
+
+  gem 'rubocop', '~> 0.58', require: false
+  gem 'rubocop-rspec'
 end
 
 group :test do
   gem 'faker',     '>= 1.9.1'
-  gem 'rubocop',   '~> 0.58.2', require: false
-  gem 'rubocop-rspec'
   gem 'scss_lint', '~> 0.57.0', require: false
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
@@ -49,4 +52,4 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem "webpacker", "~> 3.5"
+gem 'webpacker', '~> 3.5'

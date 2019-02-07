@@ -1,7 +1,7 @@
+# frozen_string_literal: true
+
 class AtFutureValidator < ActiveModel::EachValidator
   def validate_each(object, attribute, value)
-    if attribute.present? && value&.present? && value < Time.zone.today
-      object.errors[attribute] << (options[:message] || 'must be in the future')
-    end
+    object.errors[attribute] << (options[:message] || 'must be in the future') if attribute.present? && (value&.present? < Time.zone.today)
   end
 end

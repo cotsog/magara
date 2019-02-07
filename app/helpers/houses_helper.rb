@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module HousesHelper
   # Form saves gender information with integer
   # This function helps to return the integer to string.
@@ -21,16 +23,18 @@ module HousesHelper
   #
   #   check_it(@house.checkbox.refrigerator)
   #   # => '&checkmark;'
+  # rubocop:disable Rails/OutputSafety
   def check_it(value)
     value = case value
             when true
               '&checkmark;'
             else
               '&cross;'
-    end
+            end
 
     value.html_safe
   end
+  # rubocop:enable Rails/OutputSafety
 
   # TODO: DRY it. HousesController has same method.
   def owner?
