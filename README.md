@@ -1,11 +1,9 @@
 # Mağara
 
 ![Ruby version](https://img.shields.io/badge/Ruby-v2.5.1-green.svg)
-![Rails version](https://img.shields.io/badge/Rails-v5.2.1-green.svg)
+![Rails version](https://img.shields.io/badge/Rails-v5.2.2-green.svg)
 [![Build Status](https://travis-ci.org/magara/magara.svg?branch=master)](https://travis-ci.org/magara/magara)
 [![AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
-[![Open Source Helpers](https://www.codetriage.com/berkhanberkdemir/magara/badges/users.svg)](https://www.codetriage.com/berkhanberkdemir/magara)
 
 Welcome to the Mağara codebase. Let's build something awesome for students.
 
@@ -17,26 +15,22 @@ is the ability for tertiary institutions to install a local and customized
 instance on their servers. This saves institutions from paying exorbitant
 installation, maintenance and uninstall fees.
 
-There are two versions of Mağara:
-1. Our self-hosted version
-2. Download and install on your on-premises server
-
 ## Codebase
 
 ### The stack
 
 Mağara runs top of [Ruby on Rails](https://rubyonrails.org), and it does not
-have JavaScript on the front end. It uses jQuery, Popper.js for Bootstrap.
+have JavaScript on the frontend. It uses jQuery, Popper.js for Bootstrap.
 
 ## Getting started
 
 ### Prerequisites
 
 > :bulb: Docker and Compose are not requirement, but you can easily setup up a
-> PostgreSQL or other services.
+> PostgreSQL or other services
 
 > :book: System specific developer installation guides are available on
-> [Wiki](https://github.com/magara/magara/wiki).
+> [Wiki](https://github.com/magara/magara/wiki)
 
 * [Ruby](https://www.ruby-lang.org/en/): Check out the Ruby version on the badge.
 * [Yarn](https://yarnpkg.com/en/): please refer to their
@@ -55,4 +49,5 @@ the full text.
 Additionally, this program's wiki, `/docs` and other documentation pages are
 released under the [Creative Commons BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/legalcode.txt).
 
-The Mağara logo &copy; 2018 Berkhan Berkdemir, and it is released under the [Creative Commons BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/legalcode.txt).
+The Mağara logo copyright &copy; 2018-2019 Berkhan Berkdemir All Rights
+Reserved.
