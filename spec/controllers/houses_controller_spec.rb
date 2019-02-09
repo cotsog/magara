@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-Rspec.describe HousesController do
+RSpec.describe HousesController do
   context 'when GET #index' do
     before { get :index }
 

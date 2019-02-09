@@ -10,16 +10,16 @@ cache:
  - vendor/bundle/
  - node_modules/
 
-env:
-- RAILS_ENV=test
-
 jobs:
   include:
   - stage: code-analysis
     script: bundle exec rubocop
   - script: bundle exec scss-lint
+  - script: bundle exec brakeman --format html --output brakeman.html
 
   - stage: test
+    env:
+    - RAILS_ENV=test
     addons:
       postgresql: "9.6"
     services:
@@ -30,6 +30,8 @@ jobs:
     - psql -c "CREATE USER magara WITH PASSWORD 'magara';" -U postgres
     - psql -c "GRANT ALL PRIVILEGES ON DATABASE magara_test TO magara;" -U postgres
     - psql -c "ALTER USER magara WITH SUPERUSER;" -U postgres
+    # Install JavaScript dependencies
+    - yarn install
     # Setup assets and database
     - bundle exec rails assets:precompile
     - bundle exec rails db:setup

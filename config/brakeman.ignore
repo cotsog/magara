@@ -1,0 +1,25 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "01ad1ac2f6c52b5325d44ce6dd39d350bfbf8e2c9fed8445c4072cb8d5a2459d",
+      "check_name": "CrossSiteScripting",
+      "message": "Unescaped model attribute",
+      "file": "app/views/houses/show.html.erb",
+      "line": 45,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "House.find(params[:id]).description",
+      "render_path": [{"type":"controller","class":"HousesController","method":"show","line":13,"file":"app/controllers/houses_controller.rb","rendered":{"name":"houses/show","file":"/home/berkhan/Projects/magara/magara/app/views/houses/show.html.erb"}}],
+      "location": {
+        "type": "template",
+        "template": "houses/show"
+      },
+      "user_input": null,
+      "confidence": "High",
+      "note": ""
+    }
+  ],
+  "updated": "2019-02-09 05:58:43 -0800",
+  "brakeman_version": "4.4.0"
+}
