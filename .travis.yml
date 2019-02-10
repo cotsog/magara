@@ -25,10 +25,10 @@ jobs:
     - elasticsearch
     before_script:
     # Add user and database with their previleges for PostgreSQL
-    - psql -c "CREATE DATABASE magara_test;
-               CREATE USER magara WITH PASSWORD 'magara';
-               GRANT ALL PRIVILEGES ON DATABASE magara_test TO magara;
-               ALTER USER magara WITH SUPERUSER;" -U postgres
+    - psql -c "CREATE DATABASE magara_test;" -U postgres
+    - psql -c "CREATE USER magara WITH PASSWORD 'magara';" -U postgres
+    - psql -c "GRANT ALL PRIVILEGES ON DATABASE magara_test TO magara;" -U postgres
+    - psql -c "ALTER USER magara WITH SUPERUSER;" -U postgres
     # Install JavaScript dependencies
     - yarn install
     # Setup assets and database
