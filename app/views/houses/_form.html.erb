@@ -4,7 +4,7 @@
 <% end %>
 
 <div class="col-12 col-lg-8 mx-auto">
-  <%= form_with model: @house, local: true do |form| %>
+  <%= form_with model: house, local: true do |form| %>
     <div class="form-row">
       <div class="col">
         <div class="form-group">
@@ -82,14 +82,14 @@
     <% end %>
 
     <div class="form-row">
-      <div class="col">
+      <div class="col-md-6">
         <div class="form-group">
           <%= form.label      :built_in %> &mdash; <small>Day is optional</small>
           <%= form.date_field :built_in, class: "form-control", max: Date.today, required: true %>
         </div>
       </div>
 
-      <div class="col">
+      <div class="col-md-6">
         <div class="form-group">
           <%= form.label        :lease_length %> &mdash; <small>Month</small>
           <%= form.number_field :lease_length, class: "form-control", min: 1, max: 18, required: true %>
@@ -167,7 +167,21 @@
     </div>
     <% end %>
 
-    <%= form.submit "Submit", class: "btn btn-primary" %>
-    <%= link_to "Cancel", houses_path, class: "btn btn-secondary" %>
+    <div class="d-flex justify-content-between">
+      <span>
+        <%= form.submit "Submit", class: "btn btn-primary" %>
+        <% if house.persisted? %>
+          <%= link_to "Cancel", house, class: "btn btn-link" %>
+        <% else %>
+          <%= link_to "Cancel", houses_path, class: "btn btn-link" %>
+        <% end %>
+      </span>
+
+      <% if house.persisted? %>
+      <span>
+        <%= link_to "Delete", house_path(house), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-link text-danger text-small" %>
+      </span>
+      <% end %>
+    </div>
   <% end %>
 </div>
