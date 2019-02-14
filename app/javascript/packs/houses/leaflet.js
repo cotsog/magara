@@ -1,4 +1,4 @@
-// DOC: https://leafletjs.com/reference-1.3.4.html
+// DOC: https://leafletjs.com/reference-1.4.0.html
 import 'leaflet/dist/leaflet.js';
 
 document.addEventListener('DOMContentLoaded', function() {

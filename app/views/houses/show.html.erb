@@ -1,5 +1,5 @@
-<% content_for :head do %>
-  <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/leaflet.css", integrity: "sha256-YR4HrDE479EpYZgeTkQfgVJq08+277UXxMLbi/YP69o=", crossorigin: "anonymous" %>
+<% content_for :head do %> <%# XXX: Can't import CSS to SCSS, so we can't use sprockets-rails and webpacker to serve that CSS asset %>
+  <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.4.0/leaflet.css", integrity: "sha256-YR4HrDE479EpYZgeTkQfgVJq08+277UXxMLbi/YP69o=", crossorigin: "anonymous" %>
   <%= javascript_pack_tag "houses/leaflet" %>
 <% end %>
 
