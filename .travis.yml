@@ -1,4 +1,4 @@
-dist: trusty
+dist: xenial
 language: ruby
 rvm:
 - 2.5.1
@@ -16,13 +16,11 @@ jobs:
   - script: bundle exec scss-lint
   - script: bundle exec brakeman --format text
 
-  - stage: test
+  - stage: tests
     env:
     - RAILS_ENV=test
-    addons:
-      postgresql: "9.6"
     services:
-    - elasticsearch
+    - postgresql
     before_script:
     # Add user and database with their previleges for PostgreSQL
     - psql -c "CREATE DATABASE magara_test;" -U postgres
@@ -31,7 +29,7 @@ jobs:
     - psql -c "ALTER USER magara WITH SUPERUSER;" -U postgres
     # Install JavaScript dependencies
     - yarn install
-    # Setup assets and database
+    # Compile assets and setup database
     - bundle exec rails assets:precompile
     - bundle exec rails db:setup
     script: bundle exec rspec
