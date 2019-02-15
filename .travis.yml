@@ -9,6 +9,9 @@ cache:
  - vendor/bundle/
  - node_modules/
 
+before_install:
+- gem install bundler -v 1.17.3
+
 jobs:
   include:
   - stage: code-analysis
