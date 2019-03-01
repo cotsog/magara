@@ -48,32 +48,12 @@ RSpec.describe HousesController do
   context 'when POST #create' do
     context 'without user' do
       before do
-        house    = build(:house)
-        address  = build(:address, house: house)
-        checkbox = build(:checkbox, house: house)
+        house = attributes_for(:house)
 
-        # BUG: It can save without address and checkbox attributes.
         post :create, params: {
-          house: {
-            rent: house.rent, deposit: house.deposit,
-            preferred_gender: house.preferred_gender,
-            available_at: house.available_at,
-            address_attributes: {
-              address_1: address.address_1, address_2: address.address_2,
-              city: address.city, state: address.state, zip_code: address.zip_code
-            },
-            checkbox_attributes: {
-              air_conditioning: checkbox.air_conditioning,
-              balcony: checkbox.balcony, furnished: checkbox.furnished,
-              include_utility: checkbox.include_utility,
-              pets_allowed: checkbox.pets_allowed,
-              private_bathroom: checkbox.private_bathroom,
-              private_bedroom: checkbox.private_bedroom,
-              refrigerator: checkbox.refrigerator,
-              near_bus_line: checkbox.near_bus_line,
-              smoke_allowed: checkbox.smoke_allowed
-            }
-          }
+          house: house,
+          address_attributes: attributes_for(:address, house),
+          checkbox_attributes: attributes_for(:checkbox, house)
         }
       end
 
@@ -86,33 +66,12 @@ RSpec.describe HousesController do
       before do
         sign_in user
 
-        house    = build(:house)
-        address  = build(:address, house: house)
-        checkbox = build(:checkbox, house: house)
+        house = attributes_for(:house)
 
-        # BUG: It can save without address and checkbox attributes.
         post :create, params: {
-          house: {
-            rent: house.rent, deposit: house.deposit,
-            preferred_gender: house.preferred_gender,
-            available_at: house.available_at,
-            address_attributes: {
-              address_1: address.address_1, address_2: address.address_2,
-              city: address.city, state: address.state,
-              zip_code: address.zip_code
-            },
-            checkbox_attributes: {
-              air_conditioning: checkbox.air_conditioning,
-              balcony: checkbox.balcony, furnished: checkbox.furnished,
-              include_utility: checkbox.include_utility,
-              pets_allowed: checkbox.pets_allowed,
-              private_bathroom: checkbox.private_bathroom,
-              private_bedroom: checkbox.private_bedroom,
-              refrigerator: checkbox.refrigerator,
-              near_bus_line: checkbox.near_bus_line,
-              smoke_allowed: checkbox.smoke_allowed
-            }
-          }
+          house: house,
+          address_attributes: attributes_for(:address, house),
+          checkbox_attributes: attributes_for(:checkbox, house)
         }
       end
 
