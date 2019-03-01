@@ -14,12 +14,12 @@ before_install:
 
 jobs:
   include:
-  - stage: code-analysis
+  - stage: Code analysis
     script: bundle exec rubocop
   - script: bundle exec scss-lint
-  - script: bundle exec brakeman --format text
+  - script: bundle exec brakeman
 
-  - stage: tests
+  - stage: Tests
     env:
     - RAILS_ENV=test
     services:
