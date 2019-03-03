@@ -9,7 +9,6 @@
 
 <div class="card-columns">
   <% @houses.each do |house| %>
-  <a href="<%= house_path(house) %>" class="text-dark">
     <div class="card">
       <div class="card-body">
         <p class="card-text">
@@ -18,14 +17,18 @@
         </p>
         <p class="card-text">
           <b>Address</b>: <br>
+          <% if user_signed_in? %>
           <%= house.address.address_1 %> <%= house.address.address_2 %><br>
           <%= house.address.city %> <%= house.address.state %>, <%= house.address.zip_code %>
+          <% else %>
+          <%= house.address.city %> <%= house.address.state %>
+          <% end %>
         </p>
+        <%= link_to "Details", house_path(house), class: "btn btn-primary stretched-link" %>
       </div>
       <div class="card-footer">
         <small class="text-muted"><%= distance_of_time_in_words_to_now(house.created_at) %> ago created</small>
       </div>
     </div>
-  </a>
   <% end %>
 </div>

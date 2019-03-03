@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class HousesController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!, except: %i[index]
   before_action :set_house, only: %i[show edit update destroy]
   before_action :owner?, only: %i[edit update destroy]
 

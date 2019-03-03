@@ -15,7 +15,11 @@ RSpec.describe HousesController do
   end
 
   context 'when GET #show' do
+    let(:user) { create :user }
+
     before do
+      sign_in user
+
       house = build(:house)
       create(:address, house: house)
       create(:checkbox, house: house)
