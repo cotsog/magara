@@ -8,7 +8,7 @@ gem 'high_voltage', '~> 3.1.0'
 gem 'jbuilder',     '~> 2.5'
 gem 'pg',           '~> 1.1.3'
 gem 'puma',         '~> 3.12.0'
-gem 'rails',        '5.2.2'
+gem 'rails',        '~> 5.2.2'
 gem 'sass-rails',   '~> 5.0'
 
 gem 'coffee-rails', '~> 4.2'
