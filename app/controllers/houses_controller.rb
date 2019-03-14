@@ -6,7 +6,13 @@ class HousesController < ApplicationController
   before_action :owner?, only: %i[edit update destroy]
 
   def index
-    @houses = House.all
+    args = {}
+    args[:rent] = {}
+    args[:rent][:gte] = params[:rent_from] if params[:rent_from].present?
+    args[:rent][:lte] = params[:rent_to]   if params[:rent_to].present?
+
+    price_ranges = [{ to: 500 }, { from: 500, to: 1000 }, { from: 1000 }]
+    @houses = House.search '*', where: args, aggs: { rent: { ranges: price_ranges } }
   end
 
   def show; end

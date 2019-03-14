@@ -24,6 +24,7 @@ jobs:
     - RAILS_ENV=test
     services:
     - postgresql
+    - elasticsearch
     before_script:
     # Add user and database with their previleges for PostgreSQL
     - psql -c "CREATE DATABASE magara_test;" -U postgres

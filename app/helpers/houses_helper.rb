@@ -36,6 +36,18 @@ module HousesHelper
   end
   # rubocop:enable Rails/OutputSafety
 
+  def price_range_name(bucket)
+    if bucket['from'] && bucket['to']
+      "#{number_to_currency bucket['from']} - #{number_to_currency bucket['to']}"
+    elsif bucket['from']
+      "#{number_to_currency bucket['from']} & Above"
+    elsif bucket['to']
+      "#{number_to_currency bucket['to']} & Below"
+    else
+      bucket['key']
+    end
+  end
+
   # TODO: DRY it. HousesController has same method.
   def owner?
     true if @house.user == current_user

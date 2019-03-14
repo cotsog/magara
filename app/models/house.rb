@@ -6,6 +6,8 @@ class House < ApplicationRecord
 
   belongs_to :user
 
+  searchkick
+
   accepts_nested_attributes_for :address,  allow_destroy: true
   accepts_nested_attributes_for :checkbox, allow_destroy: true
 
