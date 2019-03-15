@@ -6,7 +6,7 @@
 <% if owner? %>
 <div class="d-flex justify-content-end">
   <div>
-    <%= link_to "Edit", edit_house_path(@house), class: "btn btn-outline-warning" %>
+    <%= link_to t(".edit"), edit_house_path(@house), class: "btn btn-outline-warning" %>
   </div>
 </div>
 <% end %>
@@ -14,23 +14,23 @@
 <div class="row mt-2">
   <div class="col-12 col-lg-6">
     <div>
-      <h2 class="text-center">Specification</h2>
-      <b>Rent</b>: $ <%= @house.rent.to_i %> <br>
-      <b>Deposit</b>: $ <%= @house.deposit.to_i %> <br>
-      <b>Preferred gender</b>: <%= int_to_gender(@house.preferred_gender) %> <br>
-      <b>Available at</b>: <%= @house.available_at.to_date.strftime("%B %d, %Y") %> <br>
-      <b>Built in</b>: <%= @house.built_in.strftime("%B %Y") %>
+      <h2 class="text-center"><%= t(".specification") %></h2>
+      <b><%= t(".rent") %></b>: <%= number_to_currency(@house.rent) %> <br>
+      <b><%= t(".deposit") %></b>: <%= number_to_currency(@house.deposit) %> <br>
+      <b><%= t(".preferred_gender") %></b>: <%= int_to_gender(@house.preferred_gender) %> <br>
+      <b><%= t(".available_at") %></b>: <%= @house.available_at.to_date.strftime("%B %d, %Y") %> <br>
+      <b><%= t("built_in") %></b>: <%= @house.built_in.strftime("%B %Y") %>
     </div>
 
     <div class="mt-3">
-      <h3 class="text-center">Features</h3>
+      <h3 class="text-center"><%= t(".features") %></h3>
       <%= render "houses/features_table", house: @house %>
     </div>
   </div>
 
   <div class="col-12 col-lg-6">
     <div class="mt-3">
-      <h2 class="text-center">Address</h2>
+      <h2 class="text-center"><%= t(".address") %></h2>
       <address>
         <%= [@house.address.address_1, @house.address.address_2].compact.join(", ") %> <br>
         <%= @house.address.city %> <%= @house.address.state %>, <%= @house.address.zip_code %>
@@ -40,10 +40,10 @@
     </div>
 
     <div class="mt-3">
-      <h2 class="text-center">Description</h2>
+      <h2 class="text-center"><%= t(".description") %></h2>
       <p><%= @house.description.html_safe %></p>
     </div>
   </div>
 </div>
 
-<%= link_to "Back", houses_path %>
+<%= link_to t(".back"), houses_path %>

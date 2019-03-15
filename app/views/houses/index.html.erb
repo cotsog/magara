@@ -1,16 +1,16 @@
 <div class="d-flex justify-content-between">
   <div class="">
-    <h2>Properties</h2>
+    <h2><%= t(".title") %></h2>
   </div>
   <div>
-    <%= link_to "List Property", new_house_path, class: "btn btn-primary" %>
+    <%= link_to t(".list_propery"), new_house_path, class: "btn btn-primary" %>
   </div>
 </div>
 
 <div class="row">
   <% if user_signed_in? %>
   <div class="col-md-3">
-    <p class="h5">Rent</p>
+    <p class="h5"><%= t(".rent") %></p>
     <% @houses.aggs["rent"]["buckets"].sort_by { |b| b.fetch("from", 0) }.each do |bucket| %>
       <% if params[:rent_from] == bucket["from"].to_s || params[:rent_to] == bucket["to"].to_s %>
         <b><%= link_to price_range_name(bucket), request.params.except(:rent_from, :rent_to) %></b>
@@ -29,11 +29,11 @@
         <div class="card">
           <div class="card-body">
             <p class="card-text">
-              <b>Rent</b>: $ <%= house.rent.to_i %><br>
-              <b>Deposit</b>: $ <%= house.deposit.to_i %>
+              <b><%= t(".rent") %></b>: <%= number_to_currency house.rent %><br>
+              <b><%= t(".deposit") %></b>: <%= number_to_currency house.deposit %>
             </p>
             <p class="card-text">
-              <b>Address</b>: <br>
+              <b><%= t(".address") %></b>: <br>
               <% if user_signed_in? %>
               <%= house.address.address_1 %> <%= house.address.address_2 %><br>
               <%= house.address.city %> <%= house.address.state %>, <%= house.address.zip_code %>
@@ -41,7 +41,7 @@
               <%= house.address.city %> <%= house.address.state %>
               <% end %>
             </p>
-            <%= link_to "Details", house_path(house), class: "btn btn-primary stretched-link" %>
+            <%= link_to t(".details"), house_path(house), class: "btn btn-primary stretched-link" %>
           </div>
           <div class="card-footer">
             <small class="text-muted"><%= distance_of_time_in_words_to_now(house.created_at) %> ago created</small>

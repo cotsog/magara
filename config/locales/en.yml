@@ -31,3 +31,30 @@
 
 en:
   hello: "Hello world"
+  houses:
+    index:
+      title: "Properties"
+      list_propery: "List Property"
+
+      rent: "Rent"
+      deposit: "Deposit"
+      address: "Address"
+
+      details: "Details"
+    show:
+      edit: "Edit"
+
+      specification: "Specification"
+      rent: "Rent"
+      deposit: "Deposit"
+      preferred_gender: "Preferred gender"
+      available_at: "Available at"
+      built_in: "Built in"
+
+      features: "Features"
+
+      address: "Address"
+
+      description: "Description"
+
+      back: "Back"
