@@ -41,7 +41,7 @@
 
     <div class="mt-3">
       <h2 class="text-center"><%= t(".description") %></h2>
-      <p><%= @house.description.html_safe %></p>
+      <p><%= sanitize @house.description %></p>
     </div>
   </div>
 </div>

@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Address do
-  subject(:address) { create(:address, house: build(:house)) }
+  subject(:address) { build(:address, house: build(:house)) }
 
   it 'belongs to a house' do
     expect(subject).to belong_to(:house)

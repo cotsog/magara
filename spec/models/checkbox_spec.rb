@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Checkbox do
-  subject(:checkbox) { create(:checkbox, house: build(:house)) }
+  subject(:checkbox) { build(:checkbox, house: build(:house)) }
 
   it 'is valid' do
     expect(subject).to be_valid

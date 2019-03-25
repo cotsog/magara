@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe House do
-  subject(:house) { create(:house, :either) }
+  subject(:house) { build(:house, :either) }
 
   it 'belongs to a user' do
     assc = described_class.reflect_on_association(:user)
