@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class HousesController < ApplicationController
+  include HousesHelper
+
   before_action :authenticate_user!, except: %i[index]
   before_action :set_house, only: %i[show edit update destroy]
   before_action :owner?, only: %i[edit update destroy]
@@ -58,10 +60,7 @@ class HousesController < ApplicationController
 
   private
 
-  # TODO: DRY it. HousesHelper has same method.
-  def owner?
-    true if @house.user == current_user
-  end
+  helper_method :owner?
 
   def set_house
     @house = House.find params[:id]
