@@ -1,28 +1,37 @@
-# NOTE: This container is for production use which you can NOT use with cool,
-# fancy, hot reload features. Also, the container requires `master.key` during
-# build stage - will return some errors on `bundle exec rails assets:precompile`
-FROM    ruby:2.5-alpine
-WORKDIR "/usr/src/app"
+FROM ruby:2.5.5-alpine3.9
+WORKDIR "/srv/magara"
+
+# Create a `magara` group, and assign a `magara` user without home directory
+# and password
+#
+# NOTE: Thanks to BusyBox, there is no long flag, so we need to add that
+# -D: Don't assign password
+# -H: Don't create home directory
+# -G: Group
+RUN addgroup magara \
+    && adduser -D -G magara magara \
+    && chown magara:magara -R /srv
+
+COPY --chown=magara:magara . .
 
 ENV RAILS_ENV=production
 
-COPY . .
-
-# TODO: Container is exposed master.key when we build it; however, of course, it
-# doesn't return any error while it is building. Try to use some placeholders
-# for when it will be used for production
-RUN gem install bundler -v 2.0.1 \
+RUN gem install bundler --version 2.0.1 \
     && apk add --no-cache \
-            build-base tzdata postgresql-dev \
-            nodejs yarn \
-    && bundle --jobs $( grep -c processor /proc/cpuinfo ) \
-              --without development:test \
-              --path vendor/bundle \
-    && bundle exec rails assets:precompile \
-    && apk del build-base yarn
+               build-base tzdata postgresql-dev \
+               nodejs yarn \
+    && bundler install --jobs $( grep -c processor /proc/cpuinfo ) \
+                       --without development:test \
+                       --path vendor/bundle
+
+RUN bundle exec rails assets:precompile \
+    && apk del build-base yarn \
+    && chown magara:magara -R /srv
+
+USER magara:magara
 
 ENTRYPOINT ["bundle", "exec"]
 
 EXPOSE 3000
-VOLUME ["/usr/src/app/log"]
+VOLUME ["/srv/magara/log"]
 CMD    ["rails", "server"]

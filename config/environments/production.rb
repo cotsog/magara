@@ -51,7 +51,7 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  config.force_ssl = false
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -73,20 +73,14 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
-  config.action_mailer.default_url_options = {
-    host: ENV['MAGARA_DOMAIN'],
-    protocol: 'https',
-    only_path: false
-  }
+  config.action_mailer.default_url_options = { host: ENV['MAGARA_DOMAIN'] }
 
   config.action_mailer.smtp_settings = {
-    user_name: ENV['SENDGRID_USERNAME'],
-    password: ENV['SENDGRID_PASSWORD'],
-    domain: ENV['MAGARA_DOMAIN'],
-    address: 'smtp.sendgrid.net',
+    address: ENV['SES_SERVER_NAME'],
     port: 587,
-    only_path: false,
-    authentication: :plain,
+    user_name: ENV['SES_SMTP_USERNAME'],
+    password: ENV['SES_SMTP_PASSWORD'],
+    authentication: :login,
     enable_starttls_auto: true
   }
 

@@ -32,3 +32,7 @@ jobs:
     - bundle exec rails assets:precompile
     - bundle exec rails db:setup
     script: bundle exec rspec
+
+  - stage: Build
+    if: branch = master
+    script: docker build -t magara --build-arg RAILS_MASTER_KEY=$RAILS_MATER_KEY .
