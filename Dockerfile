@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1.0-experimental
+
 FROM ruby:2.5.5-alpine3.9
 WORKDIR "/srv/magara"
 
@@ -12,20 +14,19 @@ RUN addgroup magara \
     && adduser -D -G magara magara \
     && chown magara:magara -R /srv
 
-COPY --chown=magara:magara . .
-
 ENV RAILS_ENV=production
 
-RUN gem install bundler --version 2.0.1 \
+RUN --mount=type=secret,id=master \
+    gem install bundler --version 2.0.1 \
     && apk add --no-cache \
                build-base tzdata postgresql-dev \
-               nodejs yarn \
+               nodejs yarn git \
+    && git clone --depth=1 https://github.com/magara/magara.git ../magara \
     && bundler install --jobs $( grep -c processor /proc/cpuinfo ) \
                        --without development:test \
-                       --path vendor/bundle
-
-RUN bundle exec rails assets:precompile \
-    && apk del build-base yarn \
+                       --path vendor/bundle \
+    && RAILS_MASTER_KEY="$(cat /run/secrets/master)" bundle exec rails assets:precompile \
+    && apk del build-base yarn git \
     && chown magara:magara -R /srv
 
 USER magara:magara

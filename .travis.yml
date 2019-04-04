@@ -17,9 +17,11 @@ jobs:
   - stage: Tests
     env:
     - RAILS_ENV=test
+
     services:
     - postgresql
     - elasticsearch
+
     before_script:
     # Add user and database with their previleges for PostgreSQL
     - psql -c "CREATE DATABASE magara_test;" -U postgres
@@ -33,6 +35,25 @@ jobs:
     - bundle exec rails db:setup
     script: bundle exec rspec
 
-  - stage: Build
+  - stage: Build container
     if: branch = master
-    script: docker build -t magara --build-arg RAILS_MASTER_KEY=$RAILS_MASTER_KEY .
+
+    addons:
+      apt:
+        packages:
+        - docker-ce
+
+    before_install:
+    - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    - sudo apt-get update
+    - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+
+    before_script:
+    - echo $RAILS_MASTER_KEY > /home/travis/master.key
+    # TODO: Login on Docker Hub
+    script: DOCKER_BUILDKIT=1 docker build -t magara --secret id=master,src=/home/travis/master.key .
+    after_script:
+    - rm /home/travis/master.key
+    # TODO: Push the container
+    # TODO: Logout from Docker Hub

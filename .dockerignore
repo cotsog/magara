@@ -6,3 +6,6 @@ log/
 storage/
 tmp/
 vendor/
+
+# Files
+config/master.key
