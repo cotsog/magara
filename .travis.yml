@@ -52,7 +52,7 @@ jobs:
     before_script:
     - echo $RAILS_MASTER_KEY > /home/travis/master.key
     # TODO: Login on Docker Hub
-    script: DOCKER_BUILDKIT=1 docker build -t magara --secret id=master,src=/home/travis/master.key .
+    script: DOCKER_BUILDKIT=1 docker build --quiet --secret id=master,src=/home/travis/master.key --tag magara .
     after_script:
     - rm /home/travis/master.key
     # TODO: Push the container
