@@ -3,9 +3,9 @@ language: ruby
 
 bundler_args: --without production
 cache:
- directories:
- - vendor/bundle/
- - node_modules/
+  bundler: true
+  directories:
+  - node_modules
 
 jobs:
   include:
