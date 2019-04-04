@@ -4,8 +4,6 @@ source 'https://rubygems.org'
 
 gem 'devise',       '~> 4.6.0'
 gem 'geocoder',     '~> 1.5'
-gem 'high_voltage', '~> 3.1.0'
-gem 'jbuilder',     '~> 2.5'
 gem 'pg',           '~> 1.1.3'
 gem 'puma',         '~> 3.12.0'
 gem 'rails',        '~> 5.2.2'
@@ -24,7 +22,6 @@ group :development, :test do
 
   gem 'factory_bot_rails', '~> 5.0'
 
-  gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.8'
 end
 

@@ -6,7 +6,7 @@ RSpec.describe HousesController do
   context 'when GET #index' do
     before { get :index }
 
-    it { is_expected.to render_template('index') }
+    it { is_expected.to respond_with(:success) }
 
     # TODO: House.search("*") doesn't work because of that commented out that it
     # it 'assigns @houses' do
@@ -28,7 +28,7 @@ RSpec.describe HousesController do
       get :show, params: { id: House.first.id }
     end
 
-    it { is_expected.to render_template('show') }
+    it { is_expected.to respond_with(:success) }
   end
 
   context 'when GET #new' do
@@ -46,7 +46,7 @@ RSpec.describe HousesController do
         get :new
       end
 
-      it { is_expected.to render_template('new') }
+      it { is_expected.to respond_with(:success) }
     end
   end
 
@@ -114,7 +114,7 @@ RSpec.describe HousesController do
         }
       end
 
-      it { is_expected.to render_template :edit }
+      it { is_expected.to respond_with(:success) }
     end
   end
 
