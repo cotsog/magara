@@ -51,9 +51,9 @@ jobs:
 
     before_script:
     - echo $RAILS_MASTER_KEY > /home/travis/master.key
-    # TODO: Login on Docker Hub
-    script: DOCKER_BUILDKIT=1 docker build --quiet --secret id=master,src=/home/travis/master.key --tag magara .
+    - echo $QUAY_ROBOT_TOKEN | docker login --username="magara+travisci" --password-stdin quay.io
+    script: DOCKER_BUILDKIT=1 docker build --quiet --secret id=master,src=/home/travis/master.key --tag quay.io/magara/magara .
     after_script:
     - rm /home/travis/master.key
-    # TODO: Push the container
-    # TODO: Logout from Docker Hub
+    - docker push quay.io/magara/magara
+    - docker logout quay.io
