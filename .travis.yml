@@ -35,25 +35,18 @@ jobs:
     - bundle exec rails db:setup
     script: bundle exec rspec
 
-  - stage: Build container
-    if: branch = master
+deploy:
+  - provider: elasticbeanstalk
+    access_key_id: $ACCESS_KEY_ID
+    secret_access_key: $SECRET_ACCESS_KEY
 
-    addons:
-      apt:
-        packages:
-        - docker-ce
+    bucket_name: $BUCKET_NAME
+    bucket_path: magara-production
 
-    before_install:
-    - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-    - sudo apt-get update
-    - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+    region: us-west-2
+    app: magara
+    env: magara-production
 
-    before_script:
-    - echo $RAILS_MASTER_KEY > /home/travis/master.key
-    - echo $QUAY_ROBOT_TOKEN | docker login --username="magara+travisci" --password-stdin quay.io
-    script: DOCKER_BUILDKIT=1 docker build --quiet --secret id=master,src=/home/travis/master.key --tag quay.io/magara/magara .
-    after_script:
-    - rm /home/travis/master.key
-    - docker push quay.io/magara/magara
-    - docker logout quay.io
+    skip_cleanup: true
+    on:
+      branch: master
