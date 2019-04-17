@@ -34,6 +34,8 @@ jobs:
     script: bundle exec rspec
 
   - stage: Deploy
+    bundler_args: --without development:test
+
     script: skip
 
     deploy:
@@ -48,7 +50,5 @@ jobs:
         app: magara
         env: magara-production
 
-        skip_cleanup: true
-        zip_file: true
         on:
           branch: master
