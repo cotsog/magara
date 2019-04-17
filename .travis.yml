@@ -15,8 +15,6 @@ jobs:
   - script: bundle exec brakeman
 
   - stage: Tests
-    env:
-    - RAILS_ENV=test
 
     services:
     - postgresql
@@ -35,18 +33,22 @@ jobs:
     - bundle exec rails db:setup
     script: bundle exec rspec
 
-deploy:
-  - provider: elasticbeanstalk
-    access_key_id: $ACCESS_KEY_ID
-    secret_access_key: $SECRET_ACCESS_KEY
+  - stage: Deploy
+    script: skip
 
-    bucket_name: $BUCKET_NAME
-    bucket_path: magara-production
+    deploy:
+      - provider: elasticbeanstalk
+        access_key_id: $ACCESS_KEY_ID
+        secret_access_key: $SECRET_ACCESS_KEY
 
-    region: us-west-2
-    app: magara
-    env: magara-production
+        bucket_name: $BUCKET_NAME
+        # bucket_path: magara-production
 
-    skip_cleanup: true
-    on:
-      branch: master
+        region: us-west-2
+        app: magara
+        env: magara-production
+
+        skip_cleanup: true
+        zip_file: true
+        on:
+          branch: master
