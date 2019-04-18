@@ -7,6 +7,10 @@ cache:
   directories:
   - node_modules
 
+notifications:
+  slack:
+    secure: E+oanXltamBcA9OTCvu0BiFzEyKWGNzBejKUVUnJ4l9lKysItfzTXSbPTD+I40brths58YNSmVVy0Ui5j0JI59Iik4asXvX2pa/LYQyn4dXOmf03+HM68GZyQkwpuwGU7L2zFPnAhvXvBoLD8oYoRiH+ZsVwUyP29Mh8pqEedcyT+YLo6trAy4nNC8nPucmHl2Uq8MViDmtXkRgOR8xelXCeSQT8dW67vO6QBc9E5GEHJC1zPzlrztdQ4cvfPTymM8v6KtFdCCVDo+iXTGTJcaWxsXFfQ2gzVHrKuZITTifzQUirndUlZLWwHePlMVZGyTUhJgjJyGYfPHPkHdwAYqUME0AaPGUdEAJskBDragLFHUn5F5GUtH97NvQU9xD99wmB4AsYpoNAjVhY5xxHa7gu6D40epc5ZneffsAJkC7r8RT5Yop45tRR44z5vLqiVMxBpZLC04owBQ5XHbfQEHmcMfd20sRWxm4WOFK0+nmA4DozrKi7TO1SObuxxdL7AqBNNxENwTyjnWDcjnseHs7plf8rU5X6oD+P7B9fxmUzSexFUta4LLb99a9CSOENFBaocykDl9yISnpFUh/xEH4ItjyJxkbNYnTcnihGvb1utvP5AKspoknsCscyc5kqJRYJ4RL0fSyDc3fMJKsrAanHqRu1kAkpoG6+zlhyzEE=
+
 jobs:
   include:
   - stage: Code analysis
@@ -26,14 +30,12 @@ jobs:
     - psql -c "CREATE USER magara WITH PASSWORD 'magara';" -U postgres
     - psql -c "GRANT ALL PRIVILEGES ON DATABASE magara_test TO magara;" -U postgres
     - psql -c "ALTER USER magara WITH SUPERUSER;" -U postgres
-    # Install JavaScript dependencies
-    - yarn install
-    # Compile assets and setup database
-    - bundle exec rails assets:precompile
+    # Create magara_test database and migrate
     - bundle exec rails db:setup
     script: bundle exec rspec
 
   - stage: Deploy
+    cache: false
     bundler_args: --without development:test
 
     script: skip
