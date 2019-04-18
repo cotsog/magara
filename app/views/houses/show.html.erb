@@ -17,7 +17,7 @@
       <h2 class="text-center"><%= t(".specification") %></h2>
       <b><%= t(".rent") %></b>: <%= number_to_currency(@house.rent) %> <br>
       <b><%= t(".deposit") %></b>: <%= number_to_currency(@house.deposit) %> <br>
-      <b><%= t(".preferred_gender") %></b>: <%= int_to_gender(@house.preferred_gender) %> <br>
+      <b><%= t(".preferred_gender") %></b>: <%= @house.preferred_gender.humanize %> <br>
       <b><%= t(".available_at") %></b>: <%= @house.available_at.to_date.strftime("%B %d, %Y") %> <br>
       <b><%= t("built_in") %></b>: <%= @house.built_in.strftime("%B %Y") %>
     </div>

@@ -72,25 +72,15 @@ RSpec.describe House do
   end
 
   context 'preferred gender' do
-    it 'is not valid without' do
+    it 'is not valid with nil' do
       house.preferred_gender = nil
       expect(subject).not_to be_valid
     end
 
-    it 'is not an included preferred gender' do
-      house.preferred_gender = 3
-      expect(subject).not_to be_valid
-    end
-
-    it 'is an included preferred gender' do
-      house.preferred_gender = 2
+    it 'is valid with the name of gender' do
+      house.preferred_gender = 'male'
       expect(subject).to be_valid
     end
-    # XXX:
-    #   ActiveRecord or something returns string to zero.
-    #
-    # it "can not be integer which is string"
-    # it "can not be text"
   end
 
   context 'available at' do

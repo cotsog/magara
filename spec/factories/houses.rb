@@ -6,7 +6,7 @@ FactoryBot.define do
     deposit          { Random.rand 400..1200 }
     description      { Faker::Lorem.sentence(3, true, 4) }
     available_at     { 3.weeks.after }
-    preferred_gender { 0 }
+    preferred_gender { 'female' }
 
     association :user, factory: :user
 

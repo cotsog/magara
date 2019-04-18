@@ -24,7 +24,7 @@
       <div class="col-12 col-lg-6">
         <div class="form-group">
           <%= form.label  :preferred_gender %>
-          <%= form.select :preferred_gender, [['Either', 0], ['Female', 1],['Male', 2]], {}, class: "form-control" %>
+          <%= form.select :preferred_gender, House.preferred_genders.keys.map { |g| [g.humanize, g] }, {}, class: "form-control" %>
         </div>
       </div>
 

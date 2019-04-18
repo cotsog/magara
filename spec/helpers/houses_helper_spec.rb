@@ -3,14 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe HousesHelper, type: :helper do
-  describe '#int_to_gender' do
-    it 'returns integer to string of gender name' do
-      expect(helper.int_to_gender(0)).to eq('Either')
-      expect(helper.int_to_gender(1)).to eq('Female')
-      expect(helper.int_to_gender(2)).to eq('Male')
-    end
-  end
-
   describe '#check_it' do
     it 'returns boolean to HTML safe checkmark or cross' do
       expect(helper.check_it(true)).to eq('&checkmark;')
