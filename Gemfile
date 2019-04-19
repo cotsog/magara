@@ -47,6 +47,9 @@ group :test do
 end
 
 group :production do
+  # ActiveStorage requires S3
+  gem 'aws-sdk-s3', require: false
+
   gem 'sentry-raven'
   gem 'sidekiq', '~> 5.2.1'
 end
