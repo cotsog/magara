@@ -1,7 +1,7 @@
 // DOC: https://leafletjs.com/reference-1.4.0.html
 import 'leaflet/dist/leaflet.js';
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('turbolinks:load', function() {
   var map = document.getElementById('map');
 
   // WARNING: if doesn't find any `dataset`, doesn't create the map
