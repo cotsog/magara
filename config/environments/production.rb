@@ -61,7 +61,7 @@ Rails.application.configure do
   config.log_tags = [:request_id]
 
   # Use a different cache store in production.
-  # config.cache_store = :mem_cache_store
+  config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'] }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   config.active_job.queue_adapter     = :sidekiq
@@ -73,10 +73,10 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
-  config.action_mailer.default_url_options = { host: ENV['MAGARA_DOMAIN'] }
+  config.action_mailer.default_url_options = { host: 'magara.ist' }
 
   config.action_mailer.smtp_settings = {
-    address: ENV['SES_SERVER_NAME'],
+    address: 'email-smtp.us-west-2.amazonaws.com',
     port: 587,
     user_name: ENV['SES_SMTP_USERNAME'],
     password: ENV['SES_SMTP_PASSWORD'],

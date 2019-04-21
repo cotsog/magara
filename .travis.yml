@@ -35,24 +35,13 @@ jobs:
     script: bundle exec rspec
 
   - stage: Deploy
-    cache: false
-    bundler_args: --without development:test
-
     script: skip
 
-    if: branch = master
-
     deploy:
-      - provider: elasticbeanstalk
-        access_key_id: $ACCESS_KEY_ID
-        secret_access_key: $SECRET_ACCESS_KEY
-
-        bucket_name: $BUCKET_NAME
-        # bucket_path: magara-production
-
-        region: us-west-2
+      - provider: heroku
+        strategy: git
+        api_key: $API_KEY
         app: magara
-        env: magara-production
 
-        on:
-          branch: master
+        # Specify the branch to deploy
+        on: master
