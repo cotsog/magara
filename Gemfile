@@ -6,11 +6,11 @@ gem 'devise',       '~> 4.6.0'
 gem 'geocoder',     '~> 1.5'
 gem 'pg',           '~> 1.1.3'
 gem 'puma',         '~> 3.12.0'
-gem 'rails',        '~> 5.2.2'
+gem 'rails',        '~> 6.0.0.rc1'
 gem 'sass-rails',   '~> 5.0'
 gem 'searchkick',   '~> 3.1'
 
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails', '~> 5.0'
 gem 'uglifier',     '>= 1.3.0'
 gem 'webpacker',    '~> 4.0'
 
@@ -22,14 +22,18 @@ group :development, :test do
 
   gem 'factory_bot_rails', '~> 5.0'
 
-  gem 'rspec-rails', '~> 3.8'
+  gem 'rspec-core', git: 'https://github.com/rspec/rspec-core'
+  gem 'rspec-expectations', git: 'https://github.com/rspec/rspec-expectations'
+  gem 'rspec-mocks', git: 'https://github.com/rspec/rspec-mocks'
+  gem 'rspec-rails', git: 'https://github.com/rspec/rspec-rails', branch: '4-0-dev'
+  gem 'rspec-support', git: 'https://github.com/rspec/rspec-support'
 end
 
 group :development do
-  gem 'listen',      '>= 3.0.5', '< 3.2'
+  gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console', git: 'https://github.com/rails/web-console'
 
   gem 'brakeman', '~> 4.4', require: false
 
