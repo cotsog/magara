@@ -4,6 +4,8 @@ class House < ApplicationRecord
   has_one :address,  dependent: :destroy
   has_one :checkbox, dependent: :destroy
 
+  has_rich_text :description
+
   belongs_to :user
 
   searchkick

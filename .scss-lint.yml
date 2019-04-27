@@ -1,1 +1,5 @@
 scss_files: 'app/assets/stylesheets/**/*.scss'
+
+linters:
+  NestingDepth:
+    enabled: false

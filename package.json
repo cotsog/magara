@@ -2,6 +2,7 @@
   "name": "magara",
   "private": true,
   "dependencies": {
+    "@rails/actiontext": "^6.0.0-rc1",
     "@rails/webpacker": "^4.0.2",
     "bootstrap": "^4.2.1",
     "jquery": "^3.3.1",
