@@ -1,6 +1,6 @@
 # Mağara
 
-![Ruby version](https://img.shields.io/badge/Ruby-v2.5.1-green.svg)
+![Ruby version](https://img.shields.io/badge/Ruby-v2.5.5-green.svg)
 ![Rails version](https://img.shields.io/badge/Rails-v6.0.0.rc1-green.svg)
 [![Build Status](https://travis-ci.org/magara/magara.svg?branch=master)](https://travis-ci.org/magara/magara)
 [![AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue.svg)](LICENSE)

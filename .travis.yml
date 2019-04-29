@@ -1,14 +1,11 @@
 dist: xenial
 language: ruby
 
-rvm: 2.6
-
 bundler_args: --without production
 cache:
   bundler: true
   directories:
-  - node_modules
-  - /home/travis/.rvm/
+    - node_modules
 
 notifications:
   slack:
@@ -16,35 +13,35 @@ notifications:
 
 jobs:
   include:
-  - stage: Code analysis
-    script: bundle exec rubocop
-  - script: bundle exec scss-lint
-  - script: bundle exec brakeman
+    - stage: Code analysis
+      script: bundle exec rubocop
+    - script: bundle exec scss-lint
+    - script: bundle exec brakeman
 
-  - stage: Tests
+    - stage: Tests
 
-    services:
-    - postgresql
-    - elasticsearch
+      services:
+        - postgresql
+        - elasticsearch
 
-    before_script:
-    # Add user and database with their previleges for PostgreSQL
-    - psql -c "CREATE DATABASE magara_test;" -U postgres
-    - psql -c "CREATE USER magara WITH PASSWORD 'magara';" -U postgres
-    - psql -c "GRANT ALL PRIVILEGES ON DATABASE magara_test TO magara;" -U postgres
-    - psql -c "ALTER USER magara WITH SUPERUSER;" -U postgres
-    # Create magara_test database and migrate
-    - bundle exec rails db:setup
-    script: bundle exec rspec
+      before_script:
+        # Add user and database with their previleges for PostgreSQL
+        - psql -c "CREATE DATABASE magara_test;" -U postgres
+        - psql -c "CREATE USER magara WITH PASSWORD 'magara';" -U postgres
+        - psql -c "GRANT ALL PRIVILEGES ON DATABASE magara_test TO magara;" -U postgres
+        - psql -c "ALTER USER magara WITH SUPERUSER;" -U postgres
+        # Create magara_test database and migrate
+        - bundle exec rails db:setup
+      script: bundle exec rspec
 
-  - stage: Deploy
-    script: skip
+    - stage: Deploy
+      script: skip
 
-    deploy:
-      - provider: heroku
-        strategy: git
-        api_key: $API_KEY
-        app: magara
+      deploy:
+        - provider: heroku
+          strategy: git
+          api_key: $API_KEY
+          app: magara
 
-        # Specify the branch to deploy
-        on: master
+          # Specify the branch to deploy
+          on: master
