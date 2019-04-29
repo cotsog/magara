@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="<%= I18n.locale %>">
+<html lang="<%= I18n.locale %>" dir="ltr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title><%= "#{yield :title} | " if yield(:title).present? %>Mağara</title>
     <%= csrf_meta_tags -%>
-    <%= csp_meta_tag   -%>
+    <%= csp_meta_tag -%>
 
     <%= favicon_link_tag %>
 
@@ -54,7 +54,7 @@
     </nav>
 
     <% if flash.present? %>
-    <div class="container mt-3"> <!-- START flash -->
+    <div class="container mt-3">
       <% flash.each do |message_type, message| %>
       <% message_type = "warning" if message_type == "alert" %>
       <% message_type = "success" if message_type == "notice" %>
@@ -67,7 +67,7 @@
         </button>
       </div>
       <% end %>
-    </div> <!-- END flash -->
+    </div>
     <% end %>
 
     <div class="container my-3">
@@ -78,18 +78,17 @@
       <hr>
 
       <div class="container">
-        <div class="row">
-          <div class="col-md-5">
+        <div class="d-flex justify-content-between">
+          <div>
             <small class="text-muted">
               Copyright &copy; 2018-2019 Berkhan Berkdemir and <%= link_to "Mağara contributors", "https://github.com/magara/magara/graphs/contributors" %>
             </small>
           </div>
 
-          <div class="offset-md-4 col-md-3">
-            <ul class="list-unstyled">
-              <li><small><%= link_to "Blog", "https://magara.github.io" %></small></li>
-              <li><small><%= link_to "GitHub", "https://github.com/magara/magara" %></small></li>
-            </ul>
+          <div>
+            <small><%= link_to "Blog", "https://magara.github.io/blog" %></small> &vert;
+            <small><%= link_to "Help", "https://help.magara.ist" %></small> &vert;
+            <small><%= link_to "GitHub", "https://github.com/magara/magara" %></small>
           </div>
         </div>
       </div>
