@@ -57,6 +57,9 @@ group :production do
   # ActiveStorage requires S3
   gem 'aws-sdk-s3', require: false
 
+  # Deliver emails with Mailgun API instead of default SMTP
+  gem 'mailgun-ruby', '~> 1.1'
+
   gem 'sentry-raven'
   gem 'sidekiq', '~> 5.2.1'
 end
