@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '~> 2.5'
+ruby '~> 2.5.3'
 
 gem 'devise',       '~> 4.6.0'
 gem 'geocoder',     '~> 1.5'
