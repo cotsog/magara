@@ -43,5 +43,5 @@ jobs:
           api_key: $API_KEY
           app: magara
 
-          # Specify the branch to deploy
-          on: master
+          on:
+            tags: true
