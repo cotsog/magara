@@ -3,3 +3,4 @@
 //= require turbolinks/dist/turbolinks
 //= require popper.js/dist/umd/popper
 //= require bootstrap/dist/js/bootstrap
+//= require @fortawesome/fontawesome-free/js/all
