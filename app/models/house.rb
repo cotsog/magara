@@ -18,6 +18,7 @@ class House < ApplicationRecord
   validates :available_at, presence: true, at_future: true
 
   enum preferred_gender: %i[either female male]
+  enum status: %i[archived active]
   validates :preferred_gender, presence: true
 
   def address

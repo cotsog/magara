@@ -7,6 +7,7 @@ FactoryBot.define do
     description      { Faker::Lorem.sentence(3, true, 4) }
     available_at     { 3.weeks.after }
     preferred_gender { 'female' }
+    status           { 'archived' }
 
     association :user, factory: :user
 
@@ -20,6 +21,14 @@ FactoryBot.define do
 
     trait :male do
       preferred_gender { 2 }
+    end
+
+    trait :archieved do
+      status { 0 }
+    end
+
+    trait :active do
+      status { 1 }
     end
   end
 end

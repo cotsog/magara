@@ -22,6 +22,22 @@ RSpec.describe House do
     expect(subject).to have_one(:checkbox).dependent(:destroy)
   end
 
+  context 'status' do
+    it 'has an archived status by default' do
+      expect(subject.status).to eq 'archived'
+    end
+
+    it 'archived has a 0 value' do
+      house.status = 0
+      expect(subject.status).to eq 'archived'
+    end
+
+    it 'active has a 1 value' do
+      house.status = 1
+      expect(subject.status).to eq 'active'
+    end
+  end
+
   context 'rent' do
     it 'is not valid without' do
       house.rent = nil

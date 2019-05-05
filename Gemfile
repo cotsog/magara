@@ -43,6 +43,7 @@ group :development do
   gem 'brakeman', '~> 4.4', require: false
 
   gem 'rubocop', '~> 0.58', require: false
+  gem 'rubocop-performance'
   gem 'rubocop-rspec'
 
   gem 'scss_lint', '~> 0.57.0', require: false
