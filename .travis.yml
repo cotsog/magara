@@ -34,7 +34,35 @@ jobs:
         - bundle exec rails db:setup
       script: bundle exec rspec
 
+    - stage: Build container
+      if: tag IS present
+
+      addons:
+      apt:
+        packages:
+          - docker-ce
+
+      before_install:
+        - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+        - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+        - sudo apt-get update
+        - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+
+      before_script:
+        - echo $RAILS_MASTER_KEY > /home/travis/master.key
+      script: DOCKER_BUILDKIT=1 docker build --quiet \
+        --compress --secret id=master,src=/home/travis/master.key \
+        --tag magara/magara:latest --tag magara/magara:$TRAVIS_TAG .
+      after_script:
+        - echo $DOCKER_PASSWORD | docker login --username=$DOCKER_USERNAME --password-stdin
+        - rm /home/travis/master.key
+        - docker push magara/magara:latest
+        - docker push magara/magara:$TRAVIS_TAG
+        - docker logout
+
     - stage: Deploy
+      if: tag IS present
+
       script: skip
 
       deploy:
