@@ -33,6 +33,19 @@ jobs:
         # Create magara_test database and migrate
         - bundle exec rails db:setup
       script: bundle exec rspec
+    - services:
+      - postgresql
+      - elasticsearch
+
+      before_script:
+        # Add user and database with their previleges for PostgreSQL
+        - psql -c "CREATE DATABASE magara_test;" -U postgres
+        - psql -c "CREATE USER magara WITH PASSWORD 'magara';" -U postgres
+        - psql -c "GRANT ALL PRIVILEGES ON DATABASE magara_test TO magara;" -U postgres
+        - psql -c "ALTER USER magara WITH SUPERUSER;" -U postgres
+        # Create magara_test database and migrate
+        - bundle exec rails db:prepare
+      script: bundle exec rails test
 
     - stage: Build container
       if: tag IS present

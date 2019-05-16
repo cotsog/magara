@@ -3,13 +3,25 @@
   <%= javascript_pack_tag "houses/leaflet", "data-turbolinks-track": "reload" %>
 <% end %>
 
+<div class="d-flex justify-content-between">
+  <div>
+    <div class="btn-group">
+      <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Reply <i class="far fa-envelope"></i>
+      </button>
+      <div class="dropdown-menu p-4" style="white-space: nowrap;">
+        <p><b>Reply by email:</b><br>
+          <%= link_to "#{@house.user.uuid}@replies.magara.ist", "mailto:#{@house.user.uuid}@replies.magara.ist" %>
+        </p>
+      </div>
+    </div>
+  </div>
 <% if owner? %>
-<div class="d-flex justify-content-end">
   <div>
     <%= link_to t(".edit"), edit_house_path(@house), class: "text-warning" %>
   </div>
-</div>
 <% end %>
+</div>
 
 <div class="row mt-2">
   <div class="col-12 col-lg-6">

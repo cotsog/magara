@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.configure do
+  # Prepare the ingress controller used to receive mail
+  config.action_mailbox.ingress = :mailgun
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -73,7 +76,7 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.mailgun_settings = {
-    api_key: ENV['MAILGUN_API_KEY'],
+    api_key: Rails.application.credentials.dig(:action_mailbox, :mailgun_api_key),
     domain: 'mg.magara.ist'
   }
 
