@@ -7,22 +7,15 @@ local:
   root: <%= Rails.root.join("storage") %>
 
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
-s3-us-east-1:
-  service: S3
-  access_key_id: <%= Rails.application.credentials.dig(:aws, :access_key_id) %>
-  secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) %>
-  region: us-east-1
-  bucket: magara-production-us-east-1
-
-s3-us-west-2:
+amazon:
   service: S3
   access_key_id: <%= Rails.application.credentials.dig(:aws, :access_key_id) %>
   secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) %>
   region: us-west-2
   bucket: magara-production-us-west-2
 
-mirror:
-  service: Mirror
-  primary: s3-us-east-1
-  mirrors:
-    - s3-us-west-2
+# mirror:
+#   service: Mirror
+#   primary: s3-us-east-1
+#   mirrors:
+#     - s3-us-west-2

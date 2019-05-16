@@ -38,9 +38,9 @@ jobs:
       if: tag IS present
 
       addons:
-      apt:
-        packages:
-          - docker-ce
+        apt:
+          packages:
+            - docker-ce
 
       before_install:
         - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -66,10 +66,15 @@ jobs:
       script: skip
 
       deploy:
-        - provider: heroku
-          strategy: git
-          api_key: $API_KEY
-          app: magara
+        - provider: elasticbeanstalk
+
+          access_key_id: AKIAYA3ACZRSDEUW6IPF
+          secret_access_key:
+            secure: Z+xaZ90gTlpZyJiAkyViUAQFqs3RkpNKIAEao+eryi571PSgrOYx77cyhOffTgs/Yd9H0ikzcKh7dK7V2qQfoUCEpR2dxbdZ5q2UQxHgpttWbs/aoCXaRWoG1qXmpWEKbdCv+c+eXlDEjJ96WM/7BlYWipEqDDSCrUJutqsLf3QpW8N45Rilx7QIF4TesiOTqrCyYIx6joMNT/VDpG75cIcsPL1uPeFrPNm3cJRZTZf9oJMsp7ham6CeihKBxptkUiEeJ0dkyCsCvuoxFPqPoLiODi7f7wNIhBUWHjuVpndnfJr5r5gPLybvPE9FyiIgtsJukgMtEqS9mSJFO9ZTFOGSx2F/Ihm1JLZazYRLiy0x49pM3jyW9p36t7cd20/DupS0H/q2JswK4Nrlj5wxvBXvJ8leQoSssGGB06ga1pUJ0tzISRuGkEhek8Vj+n8TyNtG9sQWALJvVVdj3HDG4EujCDBt/0SfngwFMzPAloqvpi49+by6y3C1PISsGalIUqZt+PFk8BmxH48KG0MWgaBvo8MhseUsbGjetr50ZgQUVNkqJYYh/+6wio4OIyPkdHltG9y6zn9zqp0XIDZj18Cs15UrI+nAKVV4pHHI0ddJlMr/O8E7TIuP0yLd7ImY5H9+zCeFbmG113nlrTLD3UecCJcX94A9h42/xlqYE7s=
+
+          region: us-west-2
+          app: Mağara
+          env: magara-production
 
           on:
             tags: true
