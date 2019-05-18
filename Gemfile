@@ -47,6 +47,8 @@ group :development do
   gem 'rubocop-rspec'
 
   gem 'scss_lint', '~> 0.57.0', require: false
+
+  gem 'yard', '~> 0.9.19'
 end
 
 group :test do

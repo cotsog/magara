@@ -1,6 +1,6 @@
 inherit_from: .rubocop_todo.yml
 
-require: 
+require:
   - rubocop-rspec
   - rubocop-performance
 
@@ -16,8 +16,12 @@ AllCops:
 Metrics/LineLength:
   Enabled: false
 
-Style/Documentation:
-  Enabled: false
+GlobalVars:
+  AllowedVariables:
+    - $redis
 
 Rails:
   Enabled: true
+
+Style/Documentation:
+  Enabled: false
