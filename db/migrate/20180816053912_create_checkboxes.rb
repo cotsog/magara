@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCheckboxes < ActiveRecord::Migration[5.2]
   def change
     create_table :checkboxes do |t|
@@ -11,7 +13,7 @@ class CreateCheckboxes < ActiveRecord::Migration[5.2]
       t.boolean :refrigerator
       t.boolean :near_bus_line
       t.boolean :smoke_allowed
-      t.integer :house_id,  null: false
+      t.integer :house_id, null: false
 
       t.timestamps
     end

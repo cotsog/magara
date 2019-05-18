@@ -66,7 +66,6 @@ class HousesController < ApplicationController
     @house = House.find params[:id]
   end
 
-  # rubocop:disable Metrics/MethodLength
   def house_params
     params.require(:house).permit :rent, :deposit, :preferred_gender,
                                   :available_at,
@@ -86,5 +85,4 @@ class HousesController < ApplicationController
                                                           near_bus_line
                                                           smoke_allowed]
   end
-  # rubocop:enable Metrics/MethodLength
 end

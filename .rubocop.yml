@@ -9,10 +9,9 @@ AllCops:
   TargetRailsVersion: 5.2
 
   Exclude:
-  - bin/**/*
-  - db/**/*
-  - node_modules/**/*
-  - vendor/**/*
+    - db/schema.rb
+    - node_modules/**/*
+    - vendor/**/*
 
 Metrics/LineLength:
   Enabled: false
