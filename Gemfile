@@ -66,7 +66,7 @@ group :production do
   gem 'sentry-raven'
   gem 'sidekiq', '~> 5.2.1'
 
-  gem 'active_elastic_job'
+  gem 'active_elastic_job', git: 'https://github.com/magara/active-elastic-job.git'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
