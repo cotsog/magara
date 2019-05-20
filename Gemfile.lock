@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/magara/active-elastic-job.git
+  revision: 7867aecd66323354c48d687c156e878f4de02e4f
+  specs:
+    active_elastic_job (0.1.0.pre.alpha)
+      aws-sdk-sqs (~> 1.13)
+      rails (>= 5.2, < 6.1)
+
+GIT
   remote: https://github.com/rails/web-console
   revision: 8aae23a0fb37055cca80e50645e565de21cfae53
   specs:
@@ -124,6 +132,9 @@ GEM
       aws-sdk-core (~> 3, >= 3.48.2)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.0)
+    aws-sdk-sqs (1.14.0)
+      aws-sdk-core (~> 3, >= 3.48.2)
+      aws-sigv4 (~> 1.1)
     aws-sigv4 (1.1.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
     bcrypt (3.1.12)
@@ -355,6 +366,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_elastic_job!
   aws-sdk-s3
   bootsnap (>= 1.1.0)
   brakeman (~> 4.4)
