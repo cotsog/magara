@@ -16,6 +16,7 @@ class House < ApplicationRecord
   validates :rent, presence: true, numericality: { greater_than: 0 }
   validates :deposit, allow_nil: true, numericality: { greater_than: 0 }
   validates :available_at, presence: true, at_future: true
+  validates :built_in, presence: true
 
   enum preferred_gender: %i[either female male]
   enum status: %i[archived active]

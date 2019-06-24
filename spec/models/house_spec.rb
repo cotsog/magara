@@ -120,4 +120,21 @@ RSpec.describe House do
       expect(subject).not_to be_valid
     end
   end
+
+  context 'built in' do
+    it 'is valid if time is past' do
+      house.built_in = 1.week.ago
+      expect(subject).to be_valid
+    end
+
+    xit 'is not valid if tim is future' do
+      house.built_in = 1.week.after
+      expect(subject).not_to be_valid
+    end
+
+    it 'is not valid without' do
+      house.built_in = nil
+      expect(subject).not_to be_valid
+    end
+  end
 end
