@@ -306,7 +306,7 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    scss_lint (0.57.1)
+    scss_lint (0.58.0)
       rake (>= 0.9, < 13)
       sass (~> 3.5, >= 3.5.5)
     searchkick (3.1.3)
@@ -404,7 +404,7 @@ DEPENDENCIES
   rubocop-rails (~> 2.0)
   rubocop-rspec
   sass-rails (~> 5.0)
-  scss_lint (~> 0.57.0)
+  scss_lint (~> 0.58.0)
   searchkick (~> 3.1)
   sentry-raven
   shoulda-matchers
