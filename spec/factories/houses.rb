@@ -8,6 +8,7 @@ FactoryBot.define do
     available_at     { 3.weeks.after }
     preferred_gender { 'female' }
     status           { 'archived' }
+    built_in         { 1.year.from_now }
 
     association :user, factory: :user
 

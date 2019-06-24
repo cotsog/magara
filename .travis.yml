@@ -16,6 +16,23 @@ before_install:
   - gem update --system
   - gem install bundler
 
+create_database: &create_database
+  before_script:
+    # Add user and database with their previleges for PostgreSQL
+    - psql -c "CREATE DATABASE magara_test;" -U postgres
+    - psql -c "CREATE USER magara WITH PASSWORD 'magara';" -U postgres
+    - psql -c "GRANT ALL PRIVILEGES ON DATABASE magara_test TO magara;" -U postgres
+    - psql -c "ALTER USER magara WITH SUPERUSER;" -U postgres
+    # Create magara_test database and migrate
+    - bundle exec rails db:prepare
+
+test_stage: &test_stage
+  services:
+    - postgresql
+    - elasticsearch
+
+  <<: *create_database
+
 jobs:
   include:
     - stage: Code analysis
@@ -24,32 +41,18 @@ jobs:
     - script: bundle exec brakeman
 
     - stage: Tests
-
-      services:
-        - postgresql
-        - elasticsearch
-
+      <<: *test_stage
+      script: bundle exec rspec --exclude-pattern="spec/{features}/**/*_spec.rb"
+    - <<: *test_stage
       before_script:
-        # Add user and database with their previleges for PostgreSQL
+        # TODO: It looks ugly. Merge that with above before_script
         - psql -c "CREATE DATABASE magara_test;" -U postgres
         - psql -c "CREATE USER magara WITH PASSWORD 'magara';" -U postgres
         - psql -c "GRANT ALL PRIVILEGES ON DATABASE magara_test TO magara;" -U postgres
         - psql -c "ALTER USER magara WITH SUPERUSER;" -U postgres
-        # Create magara_test database and migrate
-        - bundle exec rails db:setup
-      script: bundle exec rspec
-    - services:
-        - postgresql
-        - elasticsearch
-
-      before_script:
-        # Add user and database with their previleges for PostgreSQL
-        - psql -c "CREATE DATABASE magara_test;" -U postgres
-        - psql -c "CREATE USER magara WITH PASSWORD 'magara';" -U postgres
-        - psql -c "GRANT ALL PRIVILEGES ON DATABASE magara_test TO magara;" -U postgres
-        - psql -c "ALTER USER magara WITH SUPERUSER;" -U postgres
-        # Create magara_test database and migrate
-        - bundle exec rails db:prepare
+        - bin/setup
+      script: bundle exec rspec spec/features
+    - <<: *test_stage
       script: bundle exec rails test
 
     - stage: Build container

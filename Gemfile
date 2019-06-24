@@ -57,6 +57,8 @@ group :test do
 
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
+
+  gem 'capybara', '~> 3.24'
 end
 
 group :production do
