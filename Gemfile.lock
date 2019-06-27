@@ -290,7 +290,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    rubocop (0.71.0)
+    rubocop (0.72.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.6)
@@ -415,7 +415,7 @@ DEPENDENCIES
   rspec-mocks!
   rspec-rails!
   rspec-support!
-  rubocop (~> 0.58)
+  rubocop (~> 0.72)
   rubocop-performance
   rubocop-rails (~> 2.0)
   rubocop-rspec
