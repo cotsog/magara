@@ -49,7 +49,7 @@ group :development do
 
   gem 'scss_lint', '~> 0.58.0', require: false
 
-  gem 'yard', '~> 0.9.19'
+  gem 'yard', '~> 0.9.20'
 end
 
 group :test do
