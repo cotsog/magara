@@ -44,7 +44,7 @@ group :development do
 
   gem 'rubocop', '~> 0.72', require: false
   gem 'rubocop-performance'
-  gem 'rubocop-rails', '~> 2.1'
+  gem 'rubocop-rails', '~> 2.2'
   gem 'rubocop-rspec'
 
   gem 'scss_lint', '~> 0.58.0', require: false

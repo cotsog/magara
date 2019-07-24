@@ -290,7 +290,7 @@ GEM
       unicode-display_width (>= 1.4.0, < 1.7)
     rubocop-performance (1.4.0)
       rubocop (>= 0.71.0)
-    rubocop-rails (2.1.0)
+    rubocop-rails (2.2.1)
       rack (>= 1.1)
       rubocop (>= 0.72.0)
     rubocop-rspec (1.33.0)
@@ -394,7 +394,7 @@ DEPENDENCIES
   rspec-support!
   rubocop (~> 0.72)
   rubocop-performance
-  rubocop-rails (~> 2.1)
+  rubocop-rails (~> 2.2)
   rubocop-rspec
   sass-rails (~> 5.0)
   scss_lint (~> 0.58.0)
