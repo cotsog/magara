@@ -17,7 +17,7 @@ gem 'uglifier',     '>= 1.3.0'
 gem 'webpacker',    '~> 4.0'
 
 # Use Active Storage variant
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.9'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
