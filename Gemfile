@@ -8,7 +8,7 @@ gem 'devise',       '~> 4.6.0'
 gem 'geocoder',     '~> 1.5'
 gem 'pg',           '~> 1.1.3'
 gem 'puma',         '~> 4.0.1'
-gem 'rails',        '~> 6.0.0.rc1'
+gem 'rails',        '~> 6.0.0.rc2'
 gem 'sass-rails',   '~> 5.0'
 gem 'searchkick',   '~> 3.1'
 
