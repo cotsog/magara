@@ -40,7 +40,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', git: 'https://github.com/rails/web-console'
 
-  gem 'brakeman', '~> 4.4', require: false
+  gem 'brakeman', '~> 4.6', require: false
 
   gem 'rubocop', '~> 0.73', require: false
   gem 'rubocop-performance'
