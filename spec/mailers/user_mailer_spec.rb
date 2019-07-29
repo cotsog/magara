@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe UserMailer, type: :mailer do
   describe 'not_exists' do
-    let(:mail) { UserMailer.not_exists('to@example.org') }
+    let(:mail) { described_class.not_exists('to@example.org') }
 
     it 'renders the headers' do
       expect(mail.subject).to eq('Not exists')
