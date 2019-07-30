@@ -317,7 +317,7 @@ GEM
       activemodel (>= 4.2)
       elasticsearch (>= 5)
       hashie
-    sentry-raven (2.10.0)
+    sentry-raven (2.11.0)
       faraday (>= 0.7.6, < 1.0)
     shoulda-matchers (4.1.1)
       activesupport (>= 4.2.0)
