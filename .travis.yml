@@ -7,10 +7,6 @@ cache:
   directories:
     - node_modules
 
-notifications:
-  slack:
-    secure: E+oanXltamBcA9OTCvu0BiFzEyKWGNzBejKUVUnJ4l9lKysItfzTXSbPTD+I40brths58YNSmVVy0Ui5j0JI59Iik4asXvX2pa/LYQyn4dXOmf03+HM68GZyQkwpuwGU7L2zFPnAhvXvBoLD8oYoRiH+ZsVwUyP29Mh8pqEedcyT+YLo6trAy4nNC8nPucmHl2Uq8MViDmtXkRgOR8xelXCeSQT8dW67vO6QBc9E5GEHJC1zPzlrztdQ4cvfPTymM8v6KtFdCCVDo+iXTGTJcaWxsXFfQ2gzVHrKuZITTifzQUirndUlZLWwHePlMVZGyTUhJgjJyGYfPHPkHdwAYqUME0AaPGUdEAJskBDragLFHUn5F5GUtH97NvQU9xD99wmB4AsYpoNAjVhY5xxHa7gu6D40epc5ZneffsAJkC7r8RT5Yop45tRR44z5vLqiVMxBpZLC04owBQ5XHbfQEHmcMfd20sRWxm4WOFK0+nmA4DozrKi7TO1SObuxxdL7AqBNNxENwTyjnWDcjnseHs7plf8rU5X6oD+P7B9fxmUzSexFUta4LLb99a9CSOENFBaocykDl9yISnpFUh/xEH4ItjyJxkbNYnTcnihGvb1utvP5AKspoknsCscyc5kqJRYJ4RL0fSyDc3fMJKsrAanHqRu1kAkpoG6+zlhyzEE=
-
 # NOTE: https://docs.travis-ci.com/user/languages/ruby/#bundler-20
 before_install:
   - gem update --system
@@ -18,13 +14,11 @@ before_install:
 
 create_database: &create_database
   before_script:
-    # Add user and database with their previleges for PostgreSQL
     - psql -c "CREATE DATABASE magara_test;" -U postgres
     - psql -c "CREATE USER magara WITH PASSWORD 'magara';" -U postgres
     - psql -c "GRANT ALL PRIVILEGES ON DATABASE magara_test TO magara;" -U postgres
     - psql -c "ALTER USER magara WITH SUPERUSER;" -U postgres
-    # Create magara_test database and migrate
-    - bundle exec rails db:prepare
+    - bin/setup
 
 test_stage: &test_stage
   services:
@@ -32,6 +26,20 @@ test_stage: &test_stage
     - elasticsearch
 
   <<: *create_database
+
+install_docker: &install_docker
+  addons:
+    apt:
+      packages:
+        - docker-ce
+
+  before_install:
+    - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    - sudo apt-get update
+    - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+    - gem update --system
+    - gem install bundler
 
 jobs:
   include:
@@ -42,15 +50,8 @@ jobs:
 
     - stage: Tests
       <<: *test_stage
-      script: bundle exec rspec --exclude-pattern="spec/{features}/**/*_spec.rb"
+      script: bundle exec rspec --exclude-pattern="spec/features/**/*_spec.rb"
     - <<: *test_stage
-      before_script:
-        # TODO: It looks ugly. Merge that with above before_script
-        - psql -c "CREATE DATABASE magara_test;" -U postgres
-        - psql -c "CREATE USER magara WITH PASSWORD 'magara';" -U postgres
-        - psql -c "GRANT ALL PRIVILEGES ON DATABASE magara_test TO magara;" -U postgres
-        - psql -c "ALTER USER magara WITH SUPERUSER;" -U postgres
-        - bin/setup
       script: bundle exec rspec spec/features
     - <<: *test_stage
       script: bundle exec rails test
@@ -58,44 +59,16 @@ jobs:
     - stage: Build container
       if: tag IS present
 
-      addons:
-        apt:
-          packages:
-            - docker-ce
-
-      before_install:
-        - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-        - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-        - sudo apt-get update
-        - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
+      <<: *install_docker
 
       before_script:
         - echo $RAILS_MASTER_KEY > /home/travis/master.key
-      script: DOCKER_BUILDKIT=1 docker build --quiet \
-        --compress --secret id=master,src=/home/travis/master.key \
-        --tag magara/magara:latest --tag magara/magara:$TRAVIS_TAG .
+      script:
+        - DOCKER_BUILDKIT=1 docker build --quiet \
+          --compress --secret id=master,src=/home/travis/master.key \
+          --tag magara/magara:$TRAVIS_TAG .
+        - docker push magara/magara:$TRAVIS_TAG
       after_script:
         - echo $DOCKER_PASSWORD | docker login --username=$DOCKER_USERNAME --password-stdin
         - rm /home/travis/master.key
-        - docker push magara/magara:latest
-        - docker push magara/magara:$TRAVIS_TAG
         - docker logout
-
-    - stage: Deploy
-      if: tag IS present
-
-      script: skip
-
-      deploy:
-        - provider: elasticbeanstalk
-
-          access_key_id: AKIAYA3ACZRSDEUW6IPF
-          secret_access_key:
-            secure: Z+xaZ90gTlpZyJiAkyViUAQFqs3RkpNKIAEao+eryi571PSgrOYx77cyhOffTgs/Yd9H0ikzcKh7dK7V2qQfoUCEpR2dxbdZ5q2UQxHgpttWbs/aoCXaRWoG1qXmpWEKbdCv+c+eXlDEjJ96WM/7BlYWipEqDDSCrUJutqsLf3QpW8N45Rilx7QIF4TesiOTqrCyYIx6joMNT/VDpG75cIcsPL1uPeFrPNm3cJRZTZf9oJMsp7ham6CeihKBxptkUiEeJ0dkyCsCvuoxFPqPoLiODi7f7wNIhBUWHjuVpndnfJr5r5gPLybvPE9FyiIgtsJukgMtEqS9mSJFO9ZTFOGSx2F/Ihm1JLZazYRLiy0x49pM3jyW9p36t7cd20/DupS0H/q2JswK4Nrlj5wxvBXvJ8leQoSssGGB06ga1pUJ0tzISRuGkEhek8Vj+n8TyNtG9sQWALJvVVdj3HDG4EujCDBt/0SfngwFMzPAloqvpi49+by6y3C1PISsGalIUqZt+PFk8BmxH48KG0MWgaBvo8MhseUsbGjetr50ZgQUVNkqJYYh/+6wio4OIyPkdHltG9y6zn9zqp0XIDZj18Cs15UrI+nAKVV4pHHI0ddJlMr/O8E7TIuP0yLd7ImY5H9+zCeFbmG113nlrTLD3UecCJcX94A9h42/xlqYE7s=
-
-          region: us-west-2
-          app: Mağara
-          env: magara-production
-
-          on:
-            tags: true
