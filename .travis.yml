@@ -64,9 +64,7 @@ jobs:
       before_script:
         - echo $RAILS_MASTER_KEY > /home/travis/master.key
       script:
-        - DOCKER_BUILDKIT=1 docker build --quiet \
-          --compress --secret id=master,src=/home/travis/master.key \
-          --tag magara/magara:$TRAVIS_TAG .
+        - DOCKER_BUILDKIT=1 docker build --quiet --compress --secret id=master,src=/home/travis/master.key --tag magara/magara:$TRAVIS_TAG .
         - docker push magara/magara:$TRAVIS_TAG
       after_script:
         - echo $DOCKER_PASSWORD | docker login --username=$DOCKER_USERNAME --password-stdin
