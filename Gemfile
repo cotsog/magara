@@ -66,7 +66,7 @@ group :production do
   gem 'aws-sdk-s3', require: false
 
   # Deliver emails with Mailgun API instead of default SMTP
-  gem 'mailgun-ruby', '~> 1.1'
+  gem 'mailgun-ruby', '~> 1.2'
 
   gem 'sentry-raven'
   gem 'sidekiq', '~> 5.2.1'
