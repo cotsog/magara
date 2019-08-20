@@ -42,7 +42,7 @@ group :development do
 
   gem 'brakeman', '~> 4.6', require: false
 
-  gem 'rubocop', '~> 0.73', require: false
+  gem 'rubocop', '~> 0.74', require: false
   gem 'rubocop-performance'
   gem 'rubocop-rails', '~> 2.2'
   gem 'rubocop-rspec'
