@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 ruby '~> 2.5.3'
 
-gem 'devise',       '~> 4.7.0'
+gem 'devise',       '~> 4.7.1'
 gem 'geocoder',     '~> 1.5'
 gem 'pg',           '~> 1.1.3'
 gem 'puma',         '~> 4.1.0'
