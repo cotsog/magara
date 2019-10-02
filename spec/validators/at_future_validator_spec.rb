@@ -1,7 +1,9 @@
-require "rails_helper"
+# frozen_string_literal: true
+
+require 'rails_helper'
 
 RSpec.describe AtFutureValidator do
-  subject do
+  subject(:house) do
     Class.new do
       include ActiveModel::Validations
       attr_accessor :date
@@ -10,21 +12,21 @@ RSpec.describe AtFutureValidator do
     end.new
   end
 
-  context "when date is yesterday" do
-    it "is not valid" do
-      subject.date = Date.yesterday
-      subject.validate
+  context 'when date is yesterday' do
+    it 'is not valid' do
+      house.date = Date.yesterday
+      house.validate
 
-      expect(subject.errors[:date]).to include 'must be in the future'
+      expect(house.errors[:date]).to include 'must be in the future'
     end
   end
 
-  context "when date is tomorrow" do
-    it "is valid" do
-      subject.date = Date.tomorrow
-      subject.validate
+  context 'when date is tomorrow' do
+    it 'is valid' do
+      house.date = Date.tomorrow
+      house.validate
 
-      expect(subject.errors[:date]).to_not include 'must be in the future'
+      expect(house.errors[:date]).not_to include 'must be in the future'
     end
   end
 end
