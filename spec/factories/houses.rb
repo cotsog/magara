@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :house do
     rent             { Random.rand 400..1200 }
     deposit          { Random.rand 400..1200 }
-    description      { Faker::Lorem.sentence(3, true, 4) }
+    description      { Faker::Lorem.sentence }
     available_at     { 3.weeks.after }
     preferred_gender { 'female' }
     status           { 'archived' }
