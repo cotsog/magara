@@ -9,6 +9,8 @@ cache:
 
 # NOTE: https://docs.travis-ci.com/user/languages/ruby/#bundler-20
 before_install:
+  - "echo '{"mtu": 1460}' | sudo tee /etc/docker/daemon.json"
+  - sudo systemctl restart docker
   - gem update --system
   - gem install bundler
 
@@ -57,15 +59,15 @@ jobs:
       script: bundle exec rails test
 
     - stage: Build container
-      if: tag IS present
+      # if: tag IS present
 
       <<: *install_docker
 
       before_script:
         - echo $RAILS_MASTER_KEY > /home/travis/master.key
       script:
-        - DOCKER_BUILDKIT=1 docker build --quiet --compress --secret id=master,src=/home/travis/master.key --tag magara/magara:$TRAVIS_TAG .
-        - docker push magara/magara:$TRAVIS_TAG
+        - DOCKER_BUILDKIT=1 docker build --quiet --compress --secret id=master,src=/home/travis/master.key --tag magara/magara:test .
+        - docker push magara/magara:test
       after_script:
         - echo $DOCKER_PASSWORD | docker login --username=$DOCKER_USERNAME --password-stdin
         - rm /home/travis/master.key
